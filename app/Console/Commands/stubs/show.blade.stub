@@ -1,0 +1,9 @@
+@extends('layout.partials.show')
+
+@section('name')
+	{{ ${{model}}->name }}
+@stop
+
+@section('show')
+	//
+@stop

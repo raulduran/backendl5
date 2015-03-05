@@ -64,8 +64,22 @@ Go to [BackendL5](http://localhost:8000/) and login with user admin, email: info
 Edit custom vars in file config/custom.php
 
 
-###Adding new entity in 1 min., for example: Articles (The next version will be a command Laravel)
+###Adding new entity in 1 min., for example: Articles
 
+Create Articles controller, repository, model, request and form classes
+
+```
+php artisan bl5:controller ArticlesController
+
+php artisan bl5:repository ArticleRepository
+
+php artisan bl5:model Article
+
+php artisan bl5:request ArticleRequest
+
+php artisan bl5:form ArticleForm
+
+```
 
 Create routes in file app/Http/routes.php, after user routes.
 
@@ -78,25 +92,13 @@ Route::post('articles/delete', array('as' => 'admin.articles.delete', 'uses' => 
 Create migrate file
 
 ```
-php artisan make:migration:schema create_articles_table --schema="title:string, body:text"
+php artisan make:migration:schema create_articles_table --schema="name:string"
 ```
 
 Migrate article
 
 ```
 php artisan migrate
-```
-
-Edit model Article and add
-
-```
-protected $fillable = ['title', 'body'];
-
-public function getCreatedAtAttribute()
-{
-	return \Date::parse($this->atributtes['created_at'])->format('d-m-Y');
-}
-
 ```
 
 Create menu section, editing app/Composers/MenusComposer.php
@@ -121,81 +123,12 @@ Add messages translations, resources/lang/es/messages.php
 'articles.delete.message' => '¿Está seguro de que quiere continuar?',
 ```
 
-Create Articles controller, form, request and repository
-
-```
-php artisan bl5:controller ArticleController
-
-php artisan bl5:repository ArticleRepository
-
-php artisan form:make Forms/ArticleForm --fields="title:text,description:textarea"
-
-php artisan make:request ArticleRequest
-
-```
-
-Editing form article app/Forms/ArticleForm.php and change buildForm()
-
-```
-$this
-	->add('title', 'text', ['label' => trans('messages.title')])
-	->add('body', 'textarea', ['label' => trans('messages.body')])
-	->add('task', 'hidden')
-;
-```
-
-Editing validation rules request app/Http/Requests/ArticleRequest.php and change authorize function to true.
-
-```
-return [
-	'title' => 'required',
-	'body' => 'required',
-];
-```
-
 Creating views for articles.
 
 ```
 mkdir resources/views/articles
-sed 's/user/article/g' resources/views/users/index.blade.php > resources/views/articles/index.blade.php
-sed 's/user/article/g' resources/views/users/show.blade.php > resources/views/articles/show.blade.php
-```
-
-Edit resources/views/articles/index.blade.php change columns name, email, role by title
-```
-<tr>
-	<th class="text-center" width="15"><input type="checkbox" name="chb-all" id="chb-all" /></th>
-	<th class="text-center" width="15">{{ trans('messages.id') }}</th>
-	<th>{{ trans('messages.title') }}</th>
-	<th class="text-center" width="100">{{ trans('messages.created_at') }}</th>
-	<th class="text-center" width="100">#</th>
-</tr>
-@foreach ($results as $article)
-<tr>
-	<td class="text-center"><input type="checkbox" name="ids[]" value="{{ $article->id }}" class="chbids" /></td>
-	<td class="text-center">{{ $article->id }}</td>
-	<td>{{ $article->title }}</td>
-	<td class="text-center">{{ $article->created_at }}</td>
-	<td class="text-center">
-		<a href="{{ route('admin.articles.show', $article->id) }}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>	
-		<a href="{{ route('admin.articles.edit', $article->id) }}" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
-	</td>
-</tr>
-@endforeach
-```
-
-Edit resources/views/articles/show.blade.php and change columns name, email, role by title and description
-
-```
-@extends('layout.partials.show')
-
-@section('name')
-	{{ $article->title }}
-@stop
-
-@section('show')
-	@include('layout.partials.fields.text', ['label' => trans('messages.body'), 'field' => $article->body])
-@stop
+touch resources/views/articles/index.blade.php
+touch resources/views/articles/show.blade.php
 ```
 
 
