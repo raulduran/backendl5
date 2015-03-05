@@ -4,11 +4,19 @@ BackendL5 for Laravel 5 based in [AdminLTE template](http://almsaeedstudio.com/A
 
 ###Install
 
-Copy file .env.example to .env and edit for change env vars.
+Copy file .env.example to .env
 
-###Migrate
+```
+cp .env.example .env
+```
 
-Migrate db
+Edit .evn and change environment vars.
+
+```
+vim .env
+```
+
+Migrate tables
 
 ```
 php artisan migrate
