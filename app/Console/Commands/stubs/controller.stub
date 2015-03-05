@@ -1,0 +1,250 @@
+<?php namespace {{namespace}};
+
+use {{rootNamespace}}Http\Requests;
+use {{rootNamespace}}Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
+use App\Repositories\{{Model}}Repository as {{Model}};
+use App\Http\Requests\{{Model}}Request;
+
+class {{class}} extends Controller {
+
+	/**
+	 * Repostory {{model}}
+	 *
+	 * @var {{Model}}Repository
+	 */
+	private ${{model}};
+
+	/**
+	 * Construc controller.
+	 *
+	 * @param  {{Model}} ${{model}}
+	 */
+	public function __construct({{Model}} ${{model}})
+	{
+		$this->{{model}} = ${{model}};
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 *
+     * @param  Request  $request
+	 * @return Response
+	 */
+	public function index(Request $request)
+	{
+		$results = $this->{{model}}->search($request);
+
+		return view('{{model}}s.index', compact('results'));
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @param  FormBuilder  $formBuilder
+	 * @return Response
+	 */
+	public function create(FormBuilder $formBuilder)
+	{
+		$form = $formBuilder->create('App\Forms\{{Model}}Form', [
+			'method' => 'POST',
+			'url' => route('admin.{{model}}s.store')
+		]);
+
+		return view('layout.partials.form', compact('form'));
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  {{Model}}Request  $request
+	 * @return Response
+	 */
+	public function store({{Model}}Request $request)
+	{
+		${{model}} = $this->{{model}}->save(null, $request->all());
+
+		$route = ($request->get('task')=='apply') ? route('admin.{{model}}s.edit', ${{model}}->id) : route('admin.{{model}}s.index');
+
+		return redirect($route)->with([
+			'status' => trans('messages.saved'), 
+			'type-status' => 'success'
+		]);
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		${{model}} = $this->{{model}}->getModel()->findOrFail($id);
+
+		return view('{{model}}s.show', compact('{{model}}'));
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @param  FormBuilder  $formBuilder
+	 * @return Response
+	 */
+	public function edit($id, FormBuilder $formBuilder)
+	{
+		${{model}} = $this->{{model}}->getModel()->findOrFail($id);
+
+		$form = $formBuilder->create('App\Forms\{{Model}}Form', [
+			'model' => ${{model}},
+			'method' => 'PATCH',
+			'url' => route('admin.{{model}}s.update', $id)
+		]);
+
+		return view('layout.partials.form', compact('form'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @param  {{Model}}Request  $request
+	 * @return Response
+	 */
+	public function update($id, {{Model}}Request $request)
+	{
+		$data = ($request->has('password')) ? $request->all() : $request->except('password');
+
+		$this->{{model}}->save($id, $data);
+
+		$route = ($request->get('task')=='apply') ? route('admin.{{model}}s.edit', $id) : route('admin.{{model}}s.index');
+
+		return redirect($route)->with([
+			'status' => trans('messages.saved'), 
+			'type-status' => 'success'
+		]);
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		$this->{{model}}->getModel()->findOrFail($id)->delete();
+
+		return redirect(route('admin.{{model}}s.index'))->with([
+			'status' => trans('messages.deleted'), 
+			'type-status' => 'success'
+		]);
+	}
+
+	/**
+	 * Delete various.
+	 *
+	 * @param  Request  $request
+	 * @return Response
+	 */
+	public function delete(Request $request)
+	{
+		$ids = $request->only('ids');
+
+		$this->{{model}}->deleteAll($ids);
+
+		return redirect(route('admin.{{model}}s.index'))->with([
+			'status' => trans('messages.deleted'), 
+			'type-status' => 'success'
+		]);
+	}
+
+}
+
+
+<?php namespace {{namespace}};
+
+use {{rootNamespace}}Http\Requests;
+use {{rootNamespace}}Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
+
+class {{class}} extends Controller {
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		//
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		//
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		//
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		//
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		//
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		//
+	}
+
+}

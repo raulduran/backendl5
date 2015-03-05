@@ -17,6 +17,19 @@ abstract class Repository {
 		return $this->model;
 	}
 
+	public function search(Request $request)
+	{
+		$query = $this->model->orderBy('id', 'ASC');
+
+		if ($request->has('search'))
+		{
+			$search = $request->get('search');
+			$query->where('id', $search);
+		}
+
+		return $query->paginate(config('custom.paginate'));
+	}	
+
 	public function getList($field='name')
 	{
 		return $this->model->lists($field, 'id');

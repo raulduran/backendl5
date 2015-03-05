@@ -124,11 +124,9 @@ Add messages translations, resources/lang/es/messages.php
 Create Articles controller, form, request and repository
 
 ```
-sed 's/User/Article/g' app/Http/Controllers/Admin/UsersController.php > tmp.php && sed 's/user/article/g' tmp.php > app/Http/Controllers/Admin/ArticlesController.php
+php artisan bl5:repository ArticleController
 
-sed 's/User/Article/g' app/Repositories/UserRepository.php > tmp.php && sed 's/user/article/g' tmp.php > app/Repositories/ArticleRepository.php
-
-rm tmp.php && composer dumpautoload
+php artisan bl5:repository ArticleRepository
 
 php artisan form:make Forms/ArticleForm --fields="title:text,description:textarea"
 

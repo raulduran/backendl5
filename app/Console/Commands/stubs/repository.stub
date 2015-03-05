@@ -1,0 +1,10 @@
+<?php namespace {{namespace}};
+
+class {{class}} extends Controller {
+
+	public function __construct({{Model}} ${{model}})
+	{
+		$this->model = ${{model}};
+	}
+
+}
