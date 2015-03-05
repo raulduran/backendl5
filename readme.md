@@ -63,10 +63,25 @@ Go to [BackendL5](http://localhost:8000/) and login with user admin:
 email: demo@demo.com password: demo
 ```
 
-###Change app name
+###Change custom vars
 
-Edit custom vars in file config/custom.php
 
+Edit file config/custom.php
+
+
+```
+return [
+	
+	'name' => 'BackendL5',
+
+	'htmlname' => '<b>Backend</b>L5',
+
+	'url' => 'https://github.com/raulduran/backendl5/',
+
+	'paginate' => '20'
+
+];
+```
 
 ###Adding new entity in 1 min., for example: Articles
 
