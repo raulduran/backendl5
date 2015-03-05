@@ -57,7 +57,11 @@ Run server
 php artisan serve
 ```
 
-Go to [BackendL5](http://localhost:8000/) and login with user admin, email: info@backendl5.com password: admin
+Go to [BackendL5](http://localhost:8000/) and login with user admin:
+
+```
+email: demo@demo.com password: demo
+```
 
 ###Change app name
 
