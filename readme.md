@@ -54,6 +54,11 @@ MAIL_ADDRESS=rduran+backendl5@inventiaplus.com
 MAIL_NAME=BackendL5
 ```
 
+Regenerate APP_KEY
+```
+php artisan key:generate
+```
+
 Migrate tables
 
 ```
