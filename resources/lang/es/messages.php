@@ -87,6 +87,7 @@ return [
 	'reference' => 'Referencia',
 	'action' => 'Acción',
 	'table' => 'Recurso',
+	'validemail' => 'Estas credenciales no coinciden con nuestros registros',
 	'chats' => 'Chats',
 	'created' => 'Fecha de creación',
 	'status' => 'Estado',

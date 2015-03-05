@@ -49,7 +49,6 @@ class AuthController extends Controller {
 		]);
 
 		$credentials = $request->only('email', 'password');
-		$credentials['status'] = 1;
 
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{
@@ -59,7 +58,7 @@ class AuthController extends Controller {
 		return redirect($this->loginPath())
 			->withInput($request->only('email', 'remember'))
 			->withErrors([
-				'email' => 'Estas credenciales no coinciden con nuestros registros',
+				'email' => trans('messages.validemail'),
 		]);
 	}
 }
