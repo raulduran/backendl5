@@ -33,10 +33,25 @@ Copy file .env.example to .env
 cp .env.example .env
 ```
 
-Edit .evn and change environment vars.
+Edit file .evn
 
 ```
-vim .env
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=TNP6X0eATkfsgHzgrqlByxcPL7Hnfldc
+
+DB_HOST=127.0.0.1
+DB_DATABASE=backendl5
+DB_USERNAME=root
+DB_PASSWORD=
+
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+
+MAIL_DRIVER=sendmail
+
+MAIL_ADDRESS=rduran+backendl5@inventiaplus.com
+MAIL_NAME=BackendL5
 ```
 
 Migrate tables
