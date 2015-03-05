@@ -10,6 +10,12 @@ Clone repository
 git clone https://github.com/raulduran/backendl5.git yourbackend
 ```
 
+Remove .git directory
+
+```
+rm -rf .git
+```
+
 Composer update
 
 ```
@@ -46,10 +52,13 @@ Install users
 php artisan db:seed
 ```
 
-###Login
+Run server
 
-info@backendl5.com / admin
+```
+php artisan serve
+```
 
+Go to (http://localhost:8000) and login with user admin, email: info@backendl5.com password: admin
 
 ###Change app name
 
