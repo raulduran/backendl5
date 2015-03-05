@@ -3,9 +3,7 @@
 use Kris\LaravelFormBuilder\Form;
 
 class UserForm extends Form
-{	
-	protected $zone;
-
+{
 	public function buildForm()
 	{
 		$this

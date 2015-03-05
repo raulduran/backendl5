@@ -62,6 +62,7 @@ return [
 	'assingto' => 'Asignar a',
 	'print' => 'Imprimir',
 	'description' => 'Descripción',
+	'body' => 'Descripción',
 	'saved' => 'Información guardada.',
 	'deleted' => 'Información borrada.',
 	'managers' => 'Administrador/es',
