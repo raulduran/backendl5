@@ -1,0 +1,26 @@
+.auth{margin: 7% auto;}
+
+#message-status{position: fixed;bottom: 0; width: 100%;z-index: 9999;}
+#message-status .alert{margin: 0; border-radius: 0;-moz-border-radius: 0; -webkit-border-radius: 0;}
+
+.capitalize{text-transform: capitalize;}
+
+.content-header h1{float: left; width: 50%;}
+
+.toolbars{float: right; width: 50%;text-align: right;}
+
+.overflow{overflow: auto;}
+
+.content-header{overflow: auto;}
+
+#map{width:100%; height: 400px;}
+
+dl{margin: 5px 0;}
+
+.pagination{margin: 0;}
+
+@media only screen and (max-width: 600px) {
+	.content-header h1{float: none; width: 100%;}
+	.toolbars{float: none; width: 100%;margin-top: 0.5em;}
+	#map{width:100%; height: 200px;}
+}
