@@ -6,7 +6,7 @@ return [
 
 	'htmlname' => '<b>Backend</b>L5',
 
-	'url' => 'http://www.backendl5.com/',
+	'url' => 'https://github.com/raulduran/backendl5/',
 
 	'paginate' => '20'
 
