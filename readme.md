@@ -124,7 +124,7 @@ Add messages translations, resources/lang/es/messages.php
 Create Articles controller, form, request and repository
 
 ```
-php artisan bl5:repository ArticleController
+php artisan bl5:controller ArticleController
 
 php artisan bl5:repository ArticleRepository
 

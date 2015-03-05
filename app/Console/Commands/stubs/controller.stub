@@ -36,7 +36,7 @@ class {{class}} extends Controller {
 	{
 		$results = $this->{{model}}->search($request);
 
-		return view('{{model}}s.index', compact('results'));
+		return view('{{models}}.index', compact('results'));
 	}
 
 	/**
@@ -49,7 +49,7 @@ class {{class}} extends Controller {
 	{
 		$form = $formBuilder->create('App\Forms\{{Model}}Form', [
 			'method' => 'POST',
-			'url' => route('admin.{{model}}s.store')
+			'url' => route('admin.{{models}}.store')
 		]);
 
 		return view('layout.partials.form', compact('form'));
@@ -65,7 +65,7 @@ class {{class}} extends Controller {
 	{
 		${{model}} = $this->{{model}}->save(null, $request->all());
 
-		$route = ($request->get('task')=='apply') ? route('admin.{{model}}s.edit', ${{model}}->id) : route('admin.{{model}}s.index');
+		$route = ($request->get('task')=='apply') ? route('admin.{{models}}.edit', ${{model}}->id) : route('admin.{{models}}.index');
 
 		return redirect($route)->with([
 			'status' => trans('messages.saved'), 
@@ -83,7 +83,7 @@ class {{class}} extends Controller {
 	{
 		${{model}} = $this->{{model}}->getModel()->findOrFail($id);
 
-		return view('{{model}}s.show', compact('{{model}}'));
+		return view('{{models}}.show', compact('{{model}}'));
 	}
 
 	/**
@@ -100,7 +100,7 @@ class {{class}} extends Controller {
 		$form = $formBuilder->create('App\Forms\{{Model}}Form', [
 			'model' => ${{model}},
 			'method' => 'PATCH',
-			'url' => route('admin.{{model}}s.update', $id)
+			'url' => route('admin.{{models}}.update', $id)
 		]);
 
 		return view('layout.partials.form', compact('form'));
@@ -119,7 +119,7 @@ class {{class}} extends Controller {
 
 		$this->{{model}}->save($id, $data);
 
-		$route = ($request->get('task')=='apply') ? route('admin.{{model}}s.edit', $id) : route('admin.{{model}}s.index');
+		$route = ($request->get('task')=='apply') ? route('admin.{{models}}.edit', $id) : route('admin.{{models}}.index');
 
 		return redirect($route)->with([
 			'status' => trans('messages.saved'), 
@@ -137,7 +137,7 @@ class {{class}} extends Controller {
 	{
 		$this->{{model}}->getModel()->findOrFail($id)->delete();
 
-		return redirect(route('admin.{{model}}s.index'))->with([
+		return redirect(route('admin.{{models}}.index'))->with([
 			'status' => trans('messages.deleted'), 
 			'type-status' => 'success'
 		]);
@@ -155,96 +155,10 @@ class {{class}} extends Controller {
 
 		$this->{{model}}->deleteAll($ids);
 
-		return redirect(route('admin.{{model}}s.index'))->with([
+		return redirect(route('admin.{{models}}.index'))->with([
 			'status' => trans('messages.deleted'), 
 			'type-status' => 'success'
 		]);
-	}
-
-}
-
-
-<?php namespace {{namespace}};
-
-use {{rootNamespace}}Http\Requests;
-use {{rootNamespace}}Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
-
-class {{class}} extends Controller {
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
 	}
 
 }

@@ -1,0 +1,24 @@
+<?php namespace {{namespace}};
+
+use Illuminate\Database\Eloquent\Model;
+
+class {{class}} extends Model {
+
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = ['name'];
+
+	/**
+	 * Get the created_at date
+	 *
+	 * @return string
+	 */
+	public function getCreatedAtAttribute()
+	{
+		return \Date::parse($this->atributtes['created_at'])->format('d-m-Y');
+	}
+
+}

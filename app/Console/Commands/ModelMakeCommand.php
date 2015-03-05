@@ -2,28 +2,28 @@
 
 use App\Console\Commands\CustomGeneratorCommand;
 
-class AdminControllerMakeCommand extends CustomGeneratorCommand {
+class ModelMakeCommand extends CustomGeneratorCommand {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'bl5:controller';
+	protected $name = 'bl5:model';
 
 	/**
 	 * The console command description.
 	 *
 	 * @var string
 	 */
-	protected $description = 'Create a new admin controller class';
+	protected $description = 'Create a model admin class';
 
 	/**
 	 * The type of class being generated.
 	 *
 	 * @var string
 	 */
-	protected $type = 'Controller';
+	protected $type = 'Model';
 
 	/**
 	 * Get the stub file for the generator.
@@ -32,7 +32,7 @@ class AdminControllerMakeCommand extends CustomGeneratorCommand {
 	 */
 	protected function getStub()
 	{
-		return __DIR__.'/stubs/controller.stub';
+		return __DIR__.'/stubs/model.stub';
 	}
 
 	/**
@@ -43,7 +43,7 @@ class AdminControllerMakeCommand extends CustomGeneratorCommand {
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace.'\Http\Controllers\Admin';
+		return $rootNamespace;
 	}
 
 }
