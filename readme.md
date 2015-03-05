@@ -16,16 +16,15 @@ Remove .git directory
 rm -rf .git
 ```
 
-Composer update
-
-```
-composer update
-```
-
-or
+Composer update [Get composer](https://getcomposer.org/download/)
 
 ```
 php composer.phar update
+```
+or
+
+```
+composer update
 ```
 
 Copy file .env.example to .env
@@ -58,7 +57,7 @@ Run server
 php artisan serve
 ```
 
-Go to (http://localhost:8000) and login with user admin, email: info@backendl5.com password: admin
+Go to [BackendL5](http://localhost:8000/) and login with user admin, email: info@backendl5.com password: admin
 
 ###Change app name
 
