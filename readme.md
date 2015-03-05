@@ -118,13 +118,14 @@ Create Articles controller, form, request and repository
 ```
 sed 's/User/Article/g' app/Http/Controllers/Admin/UsersController.php > tmp.php && sed 's/user/article/g' tmp.php > app/Http/Controllers/Admin/ArticlesController.php
 
-sed 's/User/Article/g' app/Forms/UserForm.php > tmp.php && sed 's/user/article/g' tmp.php > app/Forms/ArticleForm.php
-
-php artisan make:request ArticleRequest
-
 sed 's/User/Article/g' app/Repositories/UserRepository.php > tmp.php && sed 's/user/article/g' tmp.php > app/Repositories/ArticleRepository.php
 
 rm tmp.php && composer dumpautoload
+
+php artisan form:make Forms/ArticleForm --fields="title:text,description:textarea"
+
+php artisan make:request ArticleRequest
+
 ```
 
 Editing form article app/Forms/ArticleForm.php and change buildForm()
