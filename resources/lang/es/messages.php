@@ -136,45 +136,24 @@ return [
 
 	'actions' => 'Acciones',
 
-	'sidebar.search' => 'Buscar...',
-	'sidebar.dashboard' => 'Inicio',
-
-	'user.profile' => 'Modificar perfíl',
-	'user.logout' => 'Salir',
 	'user' => 'Usuario',
 	'users.index' => 'Usuarios',
 	'users.create' => 'Nuevo usuario',
 	'users.edit' => 'Editar usuario',
 	'users.show' => 'Ver usuario',
-	'users.login' => 'Ha iniciado una sesión',
 	'users.delete.title' => 'Eliminar usuario',
 	'users.delete.message' => '¿Está seguro de que quiere continuar?',
-
-	'user.myprofile' => 'Mí perfíl',
-	'profile.edit' => 'Editar perfíl',
 
 	'messages' => 'Mensajes',
 	'message' => 'Mensaje',
 	'message.new' => 'Nuevo mensaje',
 	'messages.new' => 'Nuevo mensaje',
 
-	'session.finish' => 'Sesión cerrada',
-	'session.welcome' => 'Bienvenido',
-	'session.invalid' => 'Datos de sesión incorrectos',
-
-	'register.invalid' => 'Error en la validación de datos',
-	'register.valid' => 'Se ha creado la cuenta. Revise su correo',
-
-	'error.select' => 'Debe seleccionar un registro',
-	'error.yourmakedoit' => '¿Está seguro de que quiere realizar esto?',
-
 	'filter.nopermission' => 'No tienes permisos para ver esta sección',
 	'filter.noauth' => 'No autentificado',
 
 	'search' => 'Buscar',
 	'filter' => 'Filtrar',
-
-	'modotest' => 'Modo Test',
 
 	'month1' => 'Enero',
 	'month2' => 'Febrero',
