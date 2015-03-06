@@ -56,11 +56,11 @@ class AllMakeCommand extends Command {
 		//Create views
 		$this->call('bl5:views', ['name' => $name]);
 		//Create request
-		$this->call('bl5:request', ['name' => str_singular(ucfirst($name))]);
+		$this->call('bl5:request', ['name' => str_singular(ucfirst($name)).'Request']);
 		//Create form
-		$this->call('bl5:form', ['name' => str_singular(ucfirst($name))]);
+		$this->call('bl5:form', ['name' => str_singular(ucfirst($name)).'Form']);
 		//Create repositroy
-		$this->call('bl5:repository', ['name' => str_singular(ucfirst($name))]);
+		$this->call('bl5:repository', ['name' => str_singular(ucfirst($name)).'Repository']);
 		//Create model
 		$this->call('bl5:model', ['name' => str_singular(ucfirst($name))]);
 		//Migration table
