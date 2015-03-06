@@ -25,4 +25,12 @@ class UserRepository extends Repository {
 
 		return $query->paginate(config('custom.paginate'));
 	}
+
+	public function save($id, $data)
+	{
+		if (isset($data['password'])) $data['password'] = bcrypt($data['password']);
+
+		return parent::save($id, $data);
+	}
+
 }

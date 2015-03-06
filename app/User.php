@@ -51,8 +51,4 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return "http://www.gravatar.com/avatar/".md5($this->email); 
 	}
 
-	public function setPasswordAttribute($value)
-	{
-		$this->attributes['password'] = bcrypt($value);
-	}
 }

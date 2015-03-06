@@ -4,20 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Http\Request;
 
 class PasswordController extends Controller {
-
-	/*
-	|--------------------------------------------------------------------------
-	| Password Reset Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller is responsible for handling password reset requests
-	| and uses a simple trait to include this behavior. You're free to
-	| explore this trait and override any methods you wish to tweak.
-	|
-	*/
 
 	use ResetsPasswords;
 
@@ -32,47 +20,18 @@ class PasswordController extends Controller {
 	{
 		$this->auth = $auth;
 		$this->passwords = $passwords;
-		$this->subject = trans('messages.reset');
 
 		$this->middleware('guest');
 	}
 
 	/**
-	 * Reset the given user's password.
+	 * Get the e-mail subject line to be used for the reset link email.
 	 *
-	 * @param  Request  $request
-	 * @return Response
+	 * @return string
 	 */
-	public function postReset(Request $request)
+	protected function getEmailSubject()
 	{
-		$this->validate($request, [
-			'token' => 'required',
-			'email' => 'required|email',
-			'password' => 'required|confirmed',
-		]);
+		return trans('messages.reset');
+	}	
 
-		$credentials = $request->only(
-			'email', 'password', 'password_confirmation', 'token'
-		);
-
-		$response = $this->passwords->reset($credentials, function($user, $password)
-		{
-			$user->password = $password;
-
-			$user->save();
-
-			$this->auth->login($user);
-		});
-
-		switch ($response)
-		{
-			case PasswordBroker::PASSWORD_RESET:
-				return redirect($this->redirectPath());
-
-			default:
-				return redirect()->back()
-							->withInput($request->only('email'))
-							->withErrors(['email' => trans($response)]);
-		}
-	}
 }
