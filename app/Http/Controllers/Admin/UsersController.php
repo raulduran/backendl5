@@ -151,9 +151,7 @@ class UsersController extends Controller {
 	 */
 	public function delete(Request $request)
 	{
-		$ids = $request->only('ids');
-
-		$this->user->deleteAll($ids);
+		$this->user->deleteAll($request->get('ids'));
 
 		return redirect(route('admin.users.index'))->with([
 			'status' => trans('messages.deleted'), 

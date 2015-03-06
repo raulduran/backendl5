@@ -151,9 +151,7 @@ class {{class}} extends Controller {
 	 */
 	public function delete(Request $request)
 	{
-		$ids = $request->only('ids');
-
-		$this->{{model}}->deleteAll($ids);
+		$this->{{model}}->deleteAll($request->get('ids'));		
 
 		return redirect(route('admin.{{models}}.index'))->with([
 			'status' => trans('messages.deleted'), 
