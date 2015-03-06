@@ -70,7 +70,7 @@ Migrate tables
 php artisan migrate
 ```
 
-Install users
+Install demo user (optional)
 
 ```
 php artisan db:seed
