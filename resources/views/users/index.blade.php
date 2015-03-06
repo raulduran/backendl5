@@ -23,7 +23,7 @@
 		<td>{{ $user->name }}</td>
 		<td>{{ $user->email }}</td>
 		<td class="text-center">{{ $user->role_name }}</td>
-		<td class="text-center">{{ $user->created_at }}</td>
+		<td class="text-center">{{ $user->created }}</td>
 		<td class="text-center">
 			<a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>	
 			<a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>

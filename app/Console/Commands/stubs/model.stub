@@ -12,13 +12,13 @@ class {{class}} extends Model {
 	protected $fillable = ['name'];
 
 	/**
-	 * Get the created_at date
+	 * Get the created date
 	 *
 	 * @return string
 	 */
-	public function getCreatedAtAttribute()
+	public function getCreatedAttribute()
 	{
-		return \Date::parse($this->atributtes['created_at'])->format('d-m-Y');
+		return \Date::parse($this->created)->format('d-m-Y');
 	}
 
 }

@@ -36,9 +36,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return \Date::parse($this->created_at)->format('M. Y');
 	}
 
-	public function getCreatedAtAttribute()
+	public function getCreatedAttribute()
 	{
-		return \Date::parse($this->atributtes['created_at'])->format('d-m-Y');
+		return \Date::parse($this->created_at)->format('d-m-Y');
 	}
 
 	public function getRoleNameAttribute()
