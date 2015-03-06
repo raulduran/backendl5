@@ -1,6 +1,8 @@
 <?php namespace {{namespace}};
 
-class {{class}} extends Controller {
+use {{rootNamespace}}{{Model}};
+
+class {{class}} extends Repository {
 
 	public function __construct({{Model}} ${{model}})
 	{

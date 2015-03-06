@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 
+use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository as User;
 use App\Http\Requests\UserRequest;
 
