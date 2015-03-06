@@ -28,7 +28,7 @@ abstract class CustomGeneratorCommand extends GeneratorCommand {
 	 */
 	protected function replaceModel($stub, $name)
 	{
-		$model = str_replace($this->getNamespace($name).'\\', '', $name);		
+		$model = str_replace($this->getNamespace($name).'\\', '', $name);
 		$model = str_replace($this->type, '', $model);
 		$model = strtolower((str_singular($model)));
 
@@ -38,4 +38,5 @@ abstract class CustomGeneratorCommand extends GeneratorCommand {
 
 		return $stub;
 	}
+
 }

@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel {
 		'App\Console\Commands\RequestMakeCommand',
 		'App\Console\Commands\FormMakeCommand',
 		'App\Console\Commands\ModelMakeCommand',
+		'App\Console\Commands\ViewsControllerMakeCommand',
 	];
 
 }

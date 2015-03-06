@@ -118,6 +118,8 @@ php artisan bl5:request ArticleRequest
 
 php artisan bl5:form ArticleForm
 
+php artisan bl5:views articles
+
 ```
 
 Create routes in file app/Http/routes.php, after user routes.
