@@ -58,8 +58,6 @@ abstract class Repository {
 
 	public function deleteAll($ids)
 	{
-		print_r($ids);
-		exit();
 		$this->model->destroy($ids);
 	}
 
