@@ -1,6 +1,6 @@
 # BackendL5
 
-BackendL5 for Laravel 5 based in [AdminLTE template](http://almsaeedstudio.com/AdminLTE/).
+BackendL5 for Laravel 5 based in [AdminLTE template](http://almsaeedstudio.com/AdminLTE/){:target="_blank"}.
 
 ###Install
 
@@ -10,13 +10,19 @@ Clone repository
 git clone https://github.com/raulduran/backendl5.git yourbackend
 ```
 
-Remove .git directory
+Change directory
+
+```
+cd yourbackend
+```
+
+Remove .git directory (optional)
 
 ```
 rm -rf .git
 ```
 
-Composer update [Get composer](https://getcomposer.org/download/)
+Composer update (first download composer from [here](https://getcomposer.org/download/){:target="_blank"})
 
 ```
 php composer.phar update
@@ -77,7 +83,7 @@ Run server
 php artisan serve
 ```
 
-Go to [BackendL5](http://localhost:8000/) and login with user admin:
+Go to [BackendL5 Local](http://localhost:8000/){:target="_blank"} and login with user admin:
 
 ```
 email: demo@demo.com password: demo
