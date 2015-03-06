@@ -63,6 +63,8 @@ class AllMakeCommand extends Command {
 		$this->call('bl5:repository', ['name' => str_singular(ucfirst($name))]);
 		//Create model
 		$this->call('bl5:model', ['name' => str_singular(ucfirst($name))]);
+		//Migration table
+		$this->call('make:migration:schema', ['name' => 'create_'.$name.'_table', '--schema' => 'name:string']);
 	}
 
 }

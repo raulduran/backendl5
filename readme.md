@@ -103,46 +103,46 @@ return [
 ];
 ```
 
-###Adding new entity in 1 min., for example: Articles
+###Adding new entity (Article) very fast
 
-Create Articles controller, repository, model, request and form classes
+Create controller, repository, model, migrate, request and form classes, all in one.
 
 ```
+php artisan bl5:all articles
+```
+
+or for steps
+```
+//Create controller
 php artisan bl5:controller ArticlesController
 
+//Create repository
 php artisan bl5:repository ArticleRepository
 
+//Create Model
 php artisan bl5:model Article
 
+//Create request
 php artisan bl5:request ArticleRequest
 
+//Create form
 php artisan bl5:form ArticleForm
 
+//Create views
 php artisan bl5:views articles
 
+//Create migrate
+php artisan make:migration:schema create_articles_table --schema="name:string"
 ```
 
-Create routes in file app/Http/routes.php, after user routes.
+Add routes in app/Http/routes.php
 
 ```
-//Articles
 Route::resource('articles', 'Admin\ArticlesController');
 Route::post('articles/delete', array('as' => 'admin.articles.delete', 'uses' => 'Admin\ArticlesController@delete'));
 ```
 
-Create migrate file
-
-```
-php artisan make:migration:schema create_articles_table --schema="name:string"
-```
-
-Migrate article
-
-```
-php artisan migrate
-```
-
-Create menu section, editing app/Composers/MenusComposer.php
+Add menu in array menus in app/Composers/MenusComposer.php
 
 ```
 'articles' => [
@@ -152,7 +152,7 @@ Create menu section, editing app/Composers/MenusComposer.php
 ]
 ```
 
-Add messages translations, resources/lang/es/messages.php 
+Add custom messages in resources/lang/es/messages.php 
 
 ```
 'article' => 'Artículo',
@@ -164,18 +164,10 @@ Add messages translations, resources/lang/es/messages.php
 'articles.delete.message' => '¿Está seguro de que quiere continuar?',
 ```
 
-Creating views for articles.
+Migrate article
 
 ```
-mkdir resources/views/articles
-touch resources/views/articles/index.blade.php
-touch resources/views/articles/show.blade.php
+php artisan migrate
 ```
-
-
-
-
-
-
 
 
