@@ -22,7 +22,7 @@ Remove .git directory (optional)
 rm -rf .git
 ```
 
-Composer update (first download composer from [!here](https://getcomposer.org/download/))
+Composer update (first download composer from <a href="https://getcomposer.org/download/" target="_blank">here</a>)
 
 ```
 php composer.phar update
@@ -83,7 +83,8 @@ Run server
 php artisan serve
 ```
 
-Go to [BackendL5 Local](http://localhost:8000/) and login with user admin:
+Go to <a href="http://localhost:8000/" target="_blank">BackendL5 Local</a> and login with user admin:
+
 
 ```
 email: demo@demo.com password: demo
