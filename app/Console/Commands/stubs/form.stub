@@ -8,6 +8,7 @@ class {{class}} extends Form
 	{
 		$this
 			->add('name', 'text', ['label' => trans('messages.name')])
+			->add('task', 'hidden')
 		;
 	}
 }
