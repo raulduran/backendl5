@@ -20,7 +20,7 @@ class UserRepository extends Repository {
 
 			$query->where('users.name', 'LIKE', '%' . $search . '%')
 				->orWhere('users.email', 'LIKE', '%' . $search . '%')
-				->orWhere('users.username', 'LIKE', '%' . $search . '%');
+			;
 		}
 
 		return $query->paginate(config('custom.paginate'));
