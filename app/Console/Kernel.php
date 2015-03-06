@@ -11,6 +11,7 @@ class Kernel extends ConsoleKernel {
 	 * @var array
 	 */
 	protected $commands = [
+		'App\Console\Commands\AllMakeCommand',
 		'App\Console\Commands\AdminControllerMakeCommand',
 		'App\Console\Commands\RepositoryMakeCommand',
 		'App\Console\Commands\RequestMakeCommand',
