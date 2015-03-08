@@ -18,7 +18,7 @@ class {{class}} extends Model {
 	 */
 	public function getCreatedAttribute()
 	{
-		return \Date::parse($this->created)->format('d-m-Y');
+		return \Date::parse($this->created_at)->format('d-m-Y');
 	}
 
 }

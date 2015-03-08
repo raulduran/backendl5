@@ -5,6 +5,13 @@ use App\User;
 
 class UserRepository extends Repository {
 
+	protected $order_fields = [
+		'id',
+		'name',
+		'role',
+		'created_at'
+	];
+
 	public function __construct(User $user)
 	{
 		$this->model = $user;
@@ -12,15 +19,14 @@ class UserRepository extends Repository {
 
 	public function search(Request $request)
 	{
-		$query = $this->model->orderBy('users.created_at', 'ASC');
+		$query = $this->order($request->all());
 
 		if ($request->has('search'))
 		{
 			$search = $request->get('search');
 
 			$query->where('users.name', 'LIKE', '%' . $search . '%')
-				->orWhere('users.email', 'LIKE', '%' . $search . '%')
-			;
+				->orWhere('users.email', 'LIKE', '%' . $search . '%');
 		}
 
 		return $query->paginate(config('custom.paginate'));

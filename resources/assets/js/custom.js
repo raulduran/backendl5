@@ -35,7 +35,34 @@ var popup = function(data, title)
 	return true;
 };
 
+var store = function(name, val) {
+	if (typeof (Storage) !== "undefined") {
+		localStorage.setItem(name, val);
+	}
+}
+
+var get = function(name) {
+	if (typeof (Storage) !== "undefined") {
+		return localStorage.getItem(name);
+	}
+}
+
+var check_sidebar = function() {
+	if (get('sidebar-hide')=='true') {
+    	$("body").addClass('sidebar-collapse');
+    	$("body").addClass('sidebar-open');
+	}
+}
+
 $(function() {
+
+	$('.sidebar-toggle').click(function(e) {
+		e.preventDefault();
+		store('sidebar-hide', $('body').hasClass('sidebar-collapse sidebar-open'));
+	});
+
+	//check_sidebar();
+
 	setTimeout(function() {
 		$("#message-status").slideUp('slow');
 	}, 2000);

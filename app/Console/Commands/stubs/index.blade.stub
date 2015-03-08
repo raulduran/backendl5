@@ -9,9 +9,9 @@
 @section('table')
 	<tr>
 		<th class="text-center" width="15"><input type="checkbox" name="chb-all" id="chb-all" /></th>
-		<th class="text-center" width="15">{{ trans('messages.id') }}</th>
-		<th>{{ trans('messages.name') }}</th>
-		<th class="text-center" width="100">{{ trans('messages.created_at') }}</th>
+		<th class="text-center">{!! sort_by('admin.{{models}}.index', 'id', trans('messages.id')) !!}</th>
+		<th>{!! sort_by('admin.{{models}}.index', 'name', trans('messages.name')) !!}</th>
+		<th class="text-center" width="100">{!! sort_by('admin.{{models}}.index', 'created_at', trans('messages.created_at')) !!}</th>		
 		<th class="text-center" width="100">#</th>
 	</tr>
 	@foreach ($results as ${{model}})

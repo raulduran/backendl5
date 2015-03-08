@@ -9,11 +9,11 @@
 @section('table')
 	<tr>
 		<th class="text-center" width="15"><input type="checkbox" name="chb-all" id="chb-all" /></th>
-		<th class="text-center" width="15">{{ trans('messages.id') }}</th>
-		<th>{{ trans('messages.name') }}</th>
+		<th class="text-center">{!! sort_by('admin.users.index', 'id', trans('messages.id')) !!}</th>
+		<th>{!! sort_by('admin.users.index', 'name', trans('messages.name')) !!}</th>
 		<th>{{ trans('messages.email') }}</th>
-		<th class="text-center">{{ trans('messages.role') }}</th>
-		<th class="text-center" width="100">{{ trans('messages.created_at') }}</th>
+		<th class="text-center">{!! sort_by('admin.users.index', 'role', trans('messages.role')) !!}</th>
+		<th class="text-center" width="100">{!! sort_by('admin.users.index', 'created_at', trans('messages.created_at')) !!}</th>
 		<th class="text-center" width="100">#</th>
 	</tr>
 	@foreach ($results as $user)

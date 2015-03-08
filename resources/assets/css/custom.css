@@ -17,6 +17,8 @@
 
 dl{margin: 5px 0;}
 
+th, td{vertical-align: middle !important;}
+
 .pagination{margin: 0;}
 
 @media only screen and (max-width: 600px) {

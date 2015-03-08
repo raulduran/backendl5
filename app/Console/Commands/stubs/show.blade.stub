@@ -5,5 +5,5 @@
 @stop
 
 @section('show')
-	Edit file resources/views/{{models}}/show.blade.php
+	//
 @stop

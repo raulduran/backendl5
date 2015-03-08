@@ -23,7 +23,7 @@ elixir(function(mix) {
 
 	mix.scripts([
 		"themes/adminlte/plugins/jQuery/jQuery-2.1.3.min.js",
-		"js/jquery-ui.min.js",
+		//"js/jquery-ui.min.js",
 		"themes/adminlte/bootstrap/js/bootstrap.min.js",		
 		//"js/raphael-min.min.js",
 		//"themes/adminlte/plugins/morris/morris.min.js",
@@ -31,11 +31,11 @@ elixir(function(mix) {
 		//"themes/adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js",
 		//"themes/adminlte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
 		//"themes/adminlte/plugins/knob/jquery.knob.js",
-		"themes/adminlte/plugins/daterangepicker/daterangepicker.js",
-		"themes/adminlte/plugins/datepicker/bootstrap-datepicker.js",
+		//"themes/adminlte/plugins/daterangepicker/daterangepicker.js",
+		//"themes/adminlte/plugins/datepicker/bootstrap-datepicker.js",
 		//"themes/adminlte/plugins/ckeditor/ckeditor.js",
 		"themes/adminlte/plugins/iCheck/icheck.min.js",
-		//"themes/adminlte/plugins/slimScroll/jquery.slimscroll.min.js",
+		"themes/adminlte/plugins/slimScroll/jquery.slimscroll.min.js",
 		"themes/adminlte/plugins/fastclick/fastclick.min.js",
 		"themes/adminlte/dist/js/app.min.js",
 		"js/bootbox.min.js",

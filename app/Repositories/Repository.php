@@ -7,6 +7,10 @@ abstract class Repository {
 
 	protected $model;
 
+	protected $order_fields = ['id', 'created_at', 'updated_at'];
+	protected $order = 'id';
+	protected $order_direction = 'desc';
+
 	public function __construct(Model $model)
 	{
 		$this->model = $model;
@@ -19,7 +23,7 @@ abstract class Repository {
 
 	public function search(Request $request)
 	{
-		$query = $this->model->orderBy('id', 'ASC');
+		$query = $this->order($request->all());
 
 		if ($request->has('search'))
 		{
@@ -28,6 +32,19 @@ abstract class Repository {
 		}
 
 		return $query->paginate(config('custom.paginate'));
+	}
+
+	public function order(Array $params)
+	{
+		$this->order = (isset($params['sortBy'])) ? $params['sortBy'] : $this->order;
+		$this->order_direction = (isset($params['direction'])) ? $params['direction'] : $this->order_direction;
+
+		if ($this->order && $this->order_direction && in_array($this->order, $this->order_fields))
+		{
+			return $this->model->orderBy($this->order, $this->order_direction);
+		}
+		
+		return $this->model;
 	}	
 
 	public function getList($field='name')
