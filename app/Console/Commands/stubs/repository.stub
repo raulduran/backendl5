@@ -1,5 +1,6 @@
 <?php namespace {{namespace}};
 
+use Illuminate\Http\Request;
 use {{rootNamespace}}{{Model}};
 
 class {{class}} extends Repository {
@@ -29,6 +30,6 @@ class {{class}} extends Repository {
 		}
 
 		return $query->paginate(config('custom.paginate'));
-	}	
+	}
 
 }
