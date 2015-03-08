@@ -14,6 +14,7 @@ class MenusComposer {
 
 		$this->menus = [
 			'users' => [
+				'visible' => true,
 				'icon' => 'fa-users',
 				'edit' => true,
 				'name' => trans('messages.users.index')
