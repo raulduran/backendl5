@@ -141,7 +141,7 @@ php artisan bl5:views articles
 php artisan make:migration:schema create_articles_table --schema="name:string"
 ```
 
-Add routes in app/Http/routes.php
+Add routes in app/Http/routes.php into admin section
 
 ```
 Route::resource('articles', 'Admin\ArticlesController');
@@ -175,5 +175,19 @@ Migrate article
 ```
 php artisan migrate
 ```
+
+###Adding Api entity (Article)
+
+Create a controller only method index and show function
+
+```
+php artisan bl5:apicontroller ArticlesController
+```
+
+Add routes in app/Http/routes.php into api section
+```
+Route::resource('articles', 'Api\ArticlessController', ['only' => ['index', 'show']]);
+```
+
 
 

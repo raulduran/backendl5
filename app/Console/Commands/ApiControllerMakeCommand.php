@@ -2,21 +2,21 @@
 
 use App\Console\Commands\CustomGeneratorCommand;
 
-class AdminControllerMakeCommand extends CustomGeneratorCommand {
+class ApiControllerMakeCommand extends CustomGeneratorCommand {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'bl5:controller';
+	protected $name = 'bl5:apicontroller';
 
 	/**
 	 * The console command description.
 	 *
 	 * @var string
 	 */
-	protected $description = 'Create a new admin controller class';
+	protected $description = 'Create a new api controller class';
 
 	/**
 	 * The type of class being generated.
@@ -31,10 +31,9 @@ class AdminControllerMakeCommand extends CustomGeneratorCommand {
 	 * @var string
 	 */
 	protected $more_info = "
-		//Add routes in app/Http/routes.php into group admin
+		//Add routes in app/Http/routes.php into group api
 		//{{Models}}
-		Route::resource('{{models}}', 'Api\{{Models}}Controller', ['only' => ['index', 'show']]);
-		Route::post('{{models}}/delete', array('as' => 'admin.{{models}}.delete', 'uses' => 'Admin\{{Models}}Controller@delete'));";
+		Route::resource('{{models}}', 'Api\{{Models}}Controller', ['only' => ['index', 'show']]);";
 
 	/**
 	 * Get the stub file for the generator.
@@ -43,7 +42,7 @@ class AdminControllerMakeCommand extends CustomGeneratorCommand {
 	 */
 	protected function getStub()
 	{
-		return __DIR__.'/stubs/controller.stub';
+		return __DIR__.'/stubs/api-controller.stub';
 	}
 
 	/**
@@ -54,7 +53,7 @@ class AdminControllerMakeCommand extends CustomGeneratorCommand {
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace.'\Http\Controllers\Admin';
+		return $rootNamespace.'\Http\Controllers\Api';
 	}
 
 }

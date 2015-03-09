@@ -1,0 +1,53 @@
+<?php namespace App\Http\Controllers\Api;
+
+use Illuminate\Http\Request;
+
+use {{rootNamespace}}Http\Controllers\Controller;
+use {{rootNamespace}}Repositories\{{Model}}Repository as {{Model}};
+
+class {{class}} extends Controller {
+
+	/**
+	 * Repostory {{model}}
+	 *
+	 * @var {{Model}}Repository
+	 */
+	private ${{model}};
+
+	/**
+	 * Construc controller.
+	 *
+	 * @param  {{Model}} ${{model}}
+	 */
+	public function __construct({{Model}} ${{model}})
+	{
+		$this->{{model}} = ${{model}};
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 *
+     * @param  Request  $request
+	 * @return Response
+	 */
+	public function index(Request $request)
+	{
+		$results = $this->{{model}}->search($request);
+
+		return $results;
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		${{model}} = $this->{{model}}->getModel()->findOrFail($id);
+
+		return ${{model}};
+	}
+
+}

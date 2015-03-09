@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel {
 	protected $commands = [
 		'App\Console\Commands\AllMakeCommand',
 		'App\Console\Commands\AdminControllerMakeCommand',
+		'App\Console\Commands\ApiControllerMakeCommand',
 		'App\Console\Commands\RepositoryMakeCommand',
 		'App\Console\Commands\RequestMakeCommand',
 		'App\Console\Commands\FormMakeCommand',

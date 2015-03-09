@@ -29,7 +29,7 @@ class {{class}} extends Repository {
 			;
 		}
 
-		return $query->paginate(config('custom.paginate'));
+		return $query->paginate($request->get('limit', config('custom.paginate')));
 	}
 
 }

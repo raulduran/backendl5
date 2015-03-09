@@ -29,7 +29,7 @@ class UserRepository extends Repository {
 				->orWhere('users.email', 'LIKE', '%' . $search . '%');
 		}
 
-		return $query->paginate(config('custom.paginate'));
+		return $query->paginate($request->get('limit', config('custom.paginate')));
 	}
 
 	public function save($id, $data)

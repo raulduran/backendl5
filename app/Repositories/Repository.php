@@ -31,7 +31,7 @@ abstract class Repository {
 			$query->where('id', $search);
 		}
 
-		return $query->paginate(config('custom.paginate'));
+		return $query->paginate($request->get('limit', config('custom.paginate')));
 	}
 
 	public function order(Array $params)
