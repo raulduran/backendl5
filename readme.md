@@ -186,7 +186,7 @@ php artisan bl5:apicontroller ArticlesController
 
 Add routes in app/Http/routes.php into api section
 ```
-Route::resource('articles', 'Api\ArticlessController', ['only' => ['index', 'show']]);
+Route::resource('articles', 'Api\ArticlesController', ['only' => ['index', 'show']]);
 ```
 
 
