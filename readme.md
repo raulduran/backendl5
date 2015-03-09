@@ -176,7 +176,7 @@ Migrate article
 php artisan migrate
 ```
 
-###Adding Api entity (Article)
+###Adding Api controller (Article)
 
 Create a controller only method index and show function
 
