@@ -17,3 +17,11 @@ Route::group(array('prefix' => 'admin', 'middleware' => 'auth'), function(){
 	Route::post('users/delete', array('as' => 'admin.users.delete', 'uses' => 'Admin\UsersController@delete'));
 
 });
+
+//Api
+Route::group(array('prefix' => 'api', 'middleware' => 'allowOrigin'), function() {
+
+	//Users
+	Route::resource('users', 'Api\UsersController', ['only' => ['index', 'show']]);
+
+});
