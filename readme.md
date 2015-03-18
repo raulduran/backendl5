@@ -55,7 +55,7 @@ CACHE_DRIVER=file
 SESSION_DRIVER=file
 
 MAIL_DRIVER=sendmail
-MAIL_ADDRESS=rduran+backendl5@inventiaplus.com
+MAIL_ADDRESS=demo@demo.com
 MAIL_NAME=BackendL5
 ```
 
@@ -82,7 +82,7 @@ Run server
 php artisan serve
 ```
 
-Go to <a href="http://localhost:8000/" target="_blank">BackendL5 Local</a> and login with user admin:
+Go to <a href="http://localhost:8000/" target="_blank">BackendL5 Local</a> and login with user demo:
 
 
 ```
