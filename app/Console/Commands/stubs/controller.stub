@@ -115,9 +115,7 @@ class {{class}} extends Controller {
 	 */
 	public function update($id, {{Model}}Request $request)
 	{
-		$data = ($request->has('password')) ? $request->all() : $request->except('password');
-
-		$this->{{model}}->save($id, $data);
+		$this->{{model}}->save($id, $request->all());
 
 		$route = ($request->get('task')=='apply') ? route('admin.{{models}}.edit', $id) : route('admin.{{models}}.index');
 

@@ -152,6 +152,7 @@ Add menu in array menus in app/Composers/MenusComposer.php
 
 ```
 'articles' => [
+	'visible' => true,
 	'icon' => 'fa-file-o',
 	'edit' => true,
 	'name' => trans('messages.articles.index')
