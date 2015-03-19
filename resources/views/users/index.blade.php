@@ -8,8 +8,8 @@
 
 @section('table')
 	<tr>
-		<th class="text-center" width="15"><input type="checkbox" name="chb-all" id="chb-all" /></th>
-		<th class="text-center">{!! sort_by('admin.users.index', 'id', trans('messages.id')) !!}</th>
+		<th class="text-center" width="1"><input type="checkbox" name="chb-all" id="chb-all" /></th>
+		<th class="text-center" width="1">{!! sort_by('admin.users.index', 'id', trans('messages.id')) !!}</th>
 		<th>{!! sort_by('admin.users.index', 'name', trans('messages.name')) !!}</th>
 		<th>{{ trans('messages.email') }}</th>
 		<th class="text-center">{!! sort_by('admin.users.index', 'role', trans('messages.role')) !!}</th>

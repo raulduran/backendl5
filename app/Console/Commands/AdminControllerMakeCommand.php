@@ -31,10 +31,11 @@ class AdminControllerMakeCommand extends CustomGeneratorCommand {
 	 * @var string
 	 */
 	protected $more_info = "
-		//Add routes in app/Http/routes.php into group admin
-		//{{Models}}
-		Route::resource('{{models}}', 'Api\{{Models}}Controller', ['only' => ['index', 'show']]);
-		Route::post('{{models}}/delete', array('as' => 'admin.{{models}}.delete', 'uses' => 'Admin\{{Models}}Controller@delete'));";
+	Add routes in app/Http/routes.php into group admin
+	//{{Models}}
+	Route::resource('{{models}}', 'Admin\{{Models}}Controller');
+	Route::post('{{models}}/delete', array('as' => 'admin.{{models}}.delete', 'uses' => 'Admin\{{Models}}Controller@delete'));
+	";
 
 	/**
 	 * Get the stub file for the generator.

@@ -31,9 +31,10 @@ class ApiControllerMakeCommand extends CustomGeneratorCommand {
 	 * @var string
 	 */
 	protected $more_info = "
-		//Add routes in app/Http/routes.php into group api
-		//{{Models}}
-		Route::resource('{{models}}', 'Api\{{Models}}Controller', ['only' => ['index', 'show']]);";
+	//Add routes in app/Http/routes.php into group api
+	//{{Models}}
+	Route::resource('{{models}}', 'Api\{{Models}}Controller', ['only' => ['index', 'show']]);
+	";
 
 	/**
 	 * Get the stub file for the generator.
