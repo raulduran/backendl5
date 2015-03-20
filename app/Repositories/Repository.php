@@ -21,7 +21,7 @@ abstract class Repository {
 		return $this->model;
 	}
 
-	public function search(Request $request)
+	public function search(Request $request, $paginate=true)
 	{
 		$query = $this->order($request->all());
 
@@ -31,7 +31,7 @@ abstract class Repository {
 			$query->where('id', $search);
 		}
 
-		return $query->paginate($request->get('limit', config('custom.paginate')));
+		return ($paginate) ? $query->paginate($request->get('limit', config('custom.paginate'))) : $query->get();
 	}
 
 	public function order(Array $params)

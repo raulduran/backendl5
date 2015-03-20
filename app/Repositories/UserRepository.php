@@ -17,7 +17,7 @@ class UserRepository extends Repository {
 		$this->model = $user;
 	}
 
-	public function search(Request $request)
+	public function search(Request $request, $paginate=true)
 	{
 		$query = $this->order($request->all());
 
@@ -29,7 +29,7 @@ class UserRepository extends Repository {
 				->orWhere('users.email', 'LIKE', '%' . $search . '%');
 		}
 
-		return $query->paginate($request->get('limit', config('custom.paginate')));
+		return ($paginate) ? $query->paginate($request->get('limit', config('custom.paginate'))) : $query->get();
 	}
 
 	public function save($id, $data)
