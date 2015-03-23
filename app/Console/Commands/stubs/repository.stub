@@ -16,7 +16,7 @@ class {{class}} extends Repository {
 		$this->model = ${{model}};
 	}
 
-	public function search(Request $request)
+	public function search(Request $request, $paginate=true)
 	{
 		$query = $this->order($request->all());
 
