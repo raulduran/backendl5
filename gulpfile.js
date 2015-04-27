@@ -5,6 +5,7 @@ elixir(function(mix) {
 	var assets = "resources/assets/";
 
 	mix.styles([
+		"css/import.css",		
 		"themes/adminlte/bootstrap/css/bootstrap.min.css",
 		"css/font-awesome.min.css",
 		"css/ionicons.min.css",
