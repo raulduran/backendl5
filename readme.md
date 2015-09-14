@@ -1,27 +1,191 @@
-## Laravel PHP Framework
+# BackendL5
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+BackendL5 for Laravel 5.1 based in <a href="http://almsaeedstudio.com/AdminLTE/" target="_blank">AdminLTE template</a>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+###Install
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Clone repository
 
-## Official Documentation
+```
+git clone https://github.com/raulduran/backendl5.git yourbackend
+```
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Change directory
 
-## Contributing
+```
+cd yourbackend
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Remove .git directory (optional)
 
-## Security Vulnerabilities
+```
+rm -rf .git
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Composer update (first download composer from <a href="https://getcomposer.org/download/" target="_blank">here</a>)
 
-### License
+```
+php composer.phar update
+```
+or
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+```
+composer update
+```
+
+Copy file .env.example to .env
+
+```
+cp .env.example .env
+```
+
+Edit file .env and change conection database and email data.
+
+```
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=TNP6X0eATkfsgHzgrqlByxcPL7Hnfldc
+
+DB_HOST=127.0.0.1
+DB_DATABASE=backendl5
+DB_USERNAME=root
+DB_PASSWORD=
+
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+
+MAIL_DRIVER=sendmail
+MAIL_ADDRESS=demo@demo.com
+MAIL_NAME=BackendL5
+```
+
+Regenerate APP_KEY
+```
+php artisan key:generate
+```
+
+Migrate tables
+
+```
+php artisan migrate
+```
+
+Install demo user (optional)
+
+```
+php artisan db:seed
+```
+
+Run server
+
+```
+php artisan serve
+```
+
+Go to <a href="http://localhost:8000/" target="_blank">BackendL5 Local</a> and login with user demo:
+
+
+```
+email: demo@demo.com password: demo
+```
+
+###Change custom vars
+
+
+Edit file config/custom.php
+
+
+```
+return [
+	
+	'name' => 'BackendL5',
+
+	'htmlname' => '<b>Backend</b>L5',
+
+	'url' => 'https://github.com/raulduran/backendl5/',
+
+	'paginate' => '20'
+
+];
+```
+
+###Adding new entity (Article) very fast
+
+Create controller, repository, model, migrate, request and form classes, all in one.
+
+```
+php artisan bl5:all articles
+```
+
+or for steps
+```
+//Create controller
+php artisan bl5:controller ArticlesController
+
+//Create repository
+php artisan bl5:repository ArticleRepository
+
+//Create Model
+php artisan bl5:model Article
+
+//Create request
+php artisan bl5:request ArticleRequest
+
+//Create form
+php artisan bl5:form ArticleForm
+
+//Create views
+php artisan bl5:views articles
+
+//Create migrate
+php artisan make:migration:schema create_articles_table --schema="name:string"
+```
+
+Add routes in app/Http/routes.php into admin section
+
+```
+Route::resource('articles', 'Admin\ArticlesController');
+Route::post('articles/delete', array('as' => 'admin.articles.delete', 'uses' => 'Admin\ArticlesController@delete'));
+```
+
+Add menu in array menus in app/config/menus.php
+
+```
+'articles' => [
+	'visible' => true,
+	'icon' => 'fa-file-o',
+	'edit' => true,
+	'name' => 'messages.articles.index'
+]
+```
+
+Add custom messages in resources/lang/es/messages.php 
+
+```
+'article' => 'Artículo',
+'articles.index' => 'Artículos',
+'articles.create' => 'Nuevo artículo',
+'articles.edit' => 'Editar artículo',
+'articles.show' => 'Ver artículo',
+'articles.delete.title' => 'Eliminar artículo',
+'articles.delete.message' => '¿Está seguro de que quiere continuar?',
+```
+
+Migrate article
+
+```
+php artisan migrate
+```
+
+###Adding Api controller (Article)
+
+Create a controller only method index and show function
+
+```
+php artisan bl5:apicontroller ArticlesController
+```
+
+Add routes in app/Http/routes.php into api section
+```
+Route::resource('articles', 'Api\ArticlesController', ['only' => ['index', 'show']]);
+```
