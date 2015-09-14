@@ -1,8 +1,8 @@
-<?php namespace DummyNamespace;
+<?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class DummyClass extends Request {
+class RoleRequest extends Request {
 
     /**
      * Determine if the user is authorized to make this request.

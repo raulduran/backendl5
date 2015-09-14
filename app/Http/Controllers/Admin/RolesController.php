@@ -1,29 +1,29 @@
-<?php namespace DummyNamespace;
+<?php namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 
-use DummyRootNamespaceHttp\Controllers\Controller;
-use DummyRootNamespaceRepositories\{{Model}}Repository as {{Model}};
-use DummyRootNamespaceHttp\Requests\{{Model}}Request;
+use App\Http\Controllers\Controller;
+use App\Repositories\RoleRepository as Role;
+use App\Http\Requests\RoleRequest;
 
-class DummyClass extends Controller {
+class RolesController extends Controller {
 
     /**
-     * Repostory {{model}}
+     * Repostory role
      *
-     * @var {{Model}}Repository
+     * @var RoleRepository
      */
-    private ${{model}};
+    private $role;
 
     /**
      * Construc controller.
      *
-     * @param  {{Model}} ${{model}}
+     * @param  Role $role
      */
-    public function __construct({{Model}} ${{model}})
+    public function __construct(Role $role)
     {
-        $this->{{model}} = ${{model}};
+        $this->role = $role;
     }
 
     /**
@@ -34,9 +34,9 @@ class DummyClass extends Controller {
      */
     public function index(Request $request)
     {
-        $results = $this->{{model}}->search($request);
+        $results = $this->role->search($request);
 
-        return view('{{models}}.index', compact('results', 'request'));
+        return view('roles.index', compact('results', 'request'));
     }
 
     /**
@@ -47,9 +47,9 @@ class DummyClass extends Controller {
      */
     public function create(FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create('App\Forms\{{Model}}Form', [
+        $form = $formBuilder->create('App\Forms\RoleForm', [
             'method' => 'POST',
-            'url' => route('admin.{{models}}.store')
+            'url' => route('admin.roles.store')
         ]);
 
         return view('layout.partials.form', compact('form'));
@@ -58,14 +58,14 @@ class DummyClass extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param  {{Model}}Request  $request
+     * @param  RoleRequest  $request
      * @return Response
      */
-    public function store({{Model}}Request $request)
+    public function store(RoleRequest $request)
     {
-        ${{model}} = $this->{{model}}->save(null, $request->all());
+        $role = $this->role->save(null, $request->all());
 
-        $route = ($request->get('task')=='apply') ? route('admin.{{models}}.edit', ${{model}}->id) : route('admin.{{models}}.index');
+        $route = ($request->get('task')=='apply') ? route('admin.roles.edit', $role->id) : route('admin.roles.index');
 
         return redirect($route)->with([
             'status' => trans('messages.saved'), 
@@ -81,9 +81,9 @@ class DummyClass extends Controller {
      */
     public function show($id)
     {
-        ${{model}} = $this->{{model}}->getModel()->findOrFail($id);
+        $role = $this->role->getModel()->findOrFail($id);
 
-        return view('{{models}}.show', compact('{{model}}'));
+        return view('roles.show', compact('role'));
     }
 
     /**
@@ -95,12 +95,12 @@ class DummyClass extends Controller {
      */
     public function edit($id, FormBuilder $formBuilder)
     {
-        ${{model}} = $this->{{model}}->getModel()->findOrFail($id);
+        $role = $this->role->getModel()->findOrFail($id);
 
-        $form = $formBuilder->create('App\Forms\{{Model}}Form', [
-            'model' => ${{model}},
+        $form = $formBuilder->create('App\Forms\RoleForm', [
+            'model' => $role,
             'method' => 'PATCH',
-            'url' => route('admin.{{models}}.update', $id)
+            'url' => route('admin.roles.update', $id)
         ]);
 
         return view('layout.partials.form', compact('form'));
@@ -110,14 +110,14 @@ class DummyClass extends Controller {
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @param  {{Model}}Request  $request
+     * @param  RoleRequest  $request
      * @return Response
      */
-    public function update($id, {{Model}}Request $request)
+    public function update($id, RoleRequest $request)
     {
-        $this->{{model}}->save($id, $request->all());
+        $this->role->save($id, $request->all());
 
-        $route = ($request->get('task')=='apply') ? route('admin.{{models}}.edit', $id) : route('admin.{{models}}.index');
+        $route = ($request->get('task')=='apply') ? route('admin.roles.edit', $id) : route('admin.roles.index');
 
         return redirect($route)->with([
             'status' => trans('messages.saved'), 
@@ -133,9 +133,9 @@ class DummyClass extends Controller {
      */
     public function destroy($id)
     {
-        $this->{{model}}->getModel()->findOrFail($id)->delete();
+        $this->role->getModel()->findOrFail($id)->delete();
 
-        return redirect(route('admin.{{models}}.index'))->with([
+        return redirect(route('admin.roles.index'))->with([
             'status' => trans('messages.deleted'), 
             'type-status' => 'success'
         ]);
@@ -149,9 +149,9 @@ class DummyClass extends Controller {
      */
     public function delete(Request $request)
     {
-        $this->{{model}}->deleteAll($request->get('ids'));      
+        $this->role->deleteAll($request->get('ids'));      
 
-        return redirect(route('admin.{{models}}.index'))->with([
+        return redirect(route('admin.roles.index'))->with([
             'status' => trans('messages.deleted'), 
             'type-status' => 'success'
         ]);

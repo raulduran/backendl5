@@ -1,9 +1,9 @@
-<?php namespace DummyNamespace;
+<?php namespace App\Repositories;
 
 use Illuminate\Http\Request;
-use DummyRootNamespace{{Model}};
+use App\Permission;
 
-class DummyClass extends Repository {
+class PermissionRepository extends Repository {
 
     protected $order_fields = [
         'id',
@@ -11,9 +11,9 @@ class DummyClass extends Repository {
         'created_at'
     ];
 
-    public function __construct({{Model}} ${{model}}, $paginate=true)
+    public function __construct(Permission $permission, $paginate=true)
     {
-        $this->model = ${{model}};
+        $this->model = $permission;
     }
 
     public function search(Request $request, $paginate=true)
@@ -24,8 +24,8 @@ class DummyClass extends Repository {
         {
             $search = $request->get('search');
 
-            $query->where('{{models}}.id', 'LIKE', '%' . $search . '%')
-                ->orWhere('{{models}}.name', 'LIKE', '%' . $search . '%')
+            $query->where('permissions.id', 'LIKE', '%' . $search . '%')
+                ->orWhere('permissions.name', 'LIKE', '%' . $search . '%')
             ;
         }
 

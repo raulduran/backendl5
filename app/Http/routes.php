@@ -15,6 +15,14 @@ Route::group(array('prefix' => 'admin', 'middleware' => 'auth'), function () {
     //Users
     Route::resource('users', 'Admin\UsersController');
     Route::post('users/delete', array('as' => 'admin.users.delete', 'uses' => 'Admin\UsersController@delete'));
+
+    //Roles
+    Route::resource('roles', 'Admin\RolesController');
+    Route::post('roles/delete', array('as' => 'admin.roles.delete', 'uses' => 'Admin\RolesController@delete'));
+
+    //Permissions
+    Route::resource('permissions', 'Admin\PermissionsController');
+    Route::post('permissions/delete', array('as' => 'admin.permissions.delete', 'uses' => 'Admin\PermissionsController@delete'));
 });
 
 //Api
@@ -22,5 +30,4 @@ Route::group(array('prefix' => 'api', 'middleware' => 'allowOrigin'), function (
 
     //Users
     Route::resource('users', 'Api\UsersController', ['only' => ['index', 'show']]);
-
 });

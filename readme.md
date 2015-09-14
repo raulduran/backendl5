@@ -22,15 +22,15 @@ Remove .git directory (optional)
 rm -rf .git
 ```
 
-Composer update (first download composer from <a href="https://getcomposer.org/download/" target="_blank">here</a>)
+Composer install (first download composer from <a href="https://getcomposer.org/download/" target="_blank">here</a>)
 
 ```
-php composer.phar update
+php composer.phar install
 ```
 or
 
 ```
-composer update
+composer install
 ```
 
 Copy file .env.example to .env

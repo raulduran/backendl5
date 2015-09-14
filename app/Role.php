@@ -1,16 +1,16 @@
-<?php namespace DummyNamespace;
+<?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Date\Date;
 
-class DummyClass extends Model {
+class Role extends Model {
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'label'];
 
     /**
      * Get the created date

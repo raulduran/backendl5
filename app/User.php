@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Jenssegers\Date\Date;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -39,12 +40,12 @@ class User extends Model implements AuthenticatableContract,
 
     public function getFromAttribute()
     {
-        return \Date::parse($this->created_at)->format('M. Y');
+        return Date::parse($this->created_at)->format('M. Y');
     }
 
     public function getCreatedAttribute()
     {
-        return \Date::parse($this->created_at)->format('d-m-Y');
+        return Date::parse($this->created_at)->format('d-m-Y');
     }
 
     public function getRoleNameAttribute()

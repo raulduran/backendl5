@@ -3,18 +3,17 @@
 use Illuminate\Contracts\View\View;
 use Illuminate\Auth\Guard;
 
-class AuthComposer {
+class AuthComposer
+{
+    protected $auth;
 
-	protected $auth;
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
 
-	public function __construct(Guard $auth)
-	{
-		$this->auth = $auth;
-	}
-
-	public function compose(View $view)
-	{
-		$view->with('auth', $this->auth->user());
-	}
-
+    public function compose(View $view)
+    {
+        $view->with('auth', $this->auth->user());
+    }
 }
