@@ -3,40 +3,40 @@
 use Illuminate\Http\Request;
 use App\User;
 
-class UserRepository extends Repository {
+class UserRepository extends Repository
+{
+    protected $order_fields = [
+        'id',
+        'name',
+        'role',
+        'created_at'
+    ];
 
-	protected $order_fields = [
-		'id',
-		'name',
-		'role',
-		'created_at'
-	];
+    public function __construct(User $user)
+    {
+        $this->model = $user;
+    }
 
-	public function __construct(User $user)
-	{
-		$this->model = $user;
-	}
+    public function search(Request $request, $paginate=true)
+    {
+        $query = $this->order($request->all());
 
-	public function search(Request $request, $paginate=true)
-	{
-		$query = $this->order($request->all());
+        if ($request->has('search')) {
+            $search = $request->get('search');
 
-		if ($request->has('search'))
-		{
-			$search = $request->get('search');
+            $query->where('users.name', 'LIKE', '%' . $search . '%')
+                ->orWhere('users.email', 'LIKE', '%' . $search . '%');
+        }
 
-			$query->where('users.name', 'LIKE', '%' . $search . '%')
-				->orWhere('users.email', 'LIKE', '%' . $search . '%');
-		}
+        return ($paginate) ? $query->paginate($request->get('limit', config('custom.paginate'))) : $query->get();
+    }
 
-		return ($paginate) ? $query->paginate($request->get('limit', config('custom.paginate'))) : $query->get();
-	}
+    public function save($id, $data)
+    {
+        if (isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        }
 
-	public function save($id, $data)
-	{
-		if (isset($data['password'])) $data['password'] = bcrypt($data['password']);
-
-		return parent::save($id, $data);
-	}
-
+        return parent::save($id, $data);
+    }
 }
