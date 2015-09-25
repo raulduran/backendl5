@@ -12,6 +12,7 @@ elixir(function(mix) {
         "css/font-awesome.min.css",
         "css/ionicons.min.css",
         "css/selectize.css",
+        "css/sweetalert.css",
         "css/selectize.bootstrap3.css",
         "themes/adminlte/dist/css/AdminLTE.min.css",
         "themes/adminlte/dist/css/skins/_all-skins.min.css",
@@ -43,6 +44,7 @@ elixir(function(mix) {
         "themes/adminlte/dist/js/app.min.js",
         "js/bootbox.min.js",
         "js/selectize.js",
+        "js/sweetalert.min.js",
         "js/custom.js",
     ], "public/js/theme.js", assets);
 

@@ -10,15 +10,8 @@
     </head>
     <body class="skin-blue">
         @yield('template')
-        @if (session('status'))
-            <div id="message-status">
-                <div class="alert alert-{{ session('type-status', 'success') }}">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{ session('status') }}
-                </div>
-            </div>
-        @endif
         <script src="{{ elixir('js/theme.js') }}" type="text/javascript"></script>
         @yield('scripts')
+        @include('layout.partials.flash')
     </body>
 </html>

@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers\Admin;
+<?php
+
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;

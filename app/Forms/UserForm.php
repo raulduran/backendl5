@@ -30,7 +30,10 @@ class UserForm extends Form
                     'name' => 'roles[]'
                 ],
             ])
-            ->add('password', 'password', ['label' => trans('messages.password')])
+            ->add('password', 'password', [
+                'value' => '',
+                'label' => trans('messages.password')
+            ])
             ->add('task', 'hidden')
         ;
     }
