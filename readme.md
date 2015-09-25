@@ -22,17 +22,6 @@ Remove .git directory (optional)
 rm -rf .git
 ```
 
-Composer install (first download composer from <a href="https://getcomposer.org/download/" target="_blank">here</a>)
-
-```
-php composer.phar install
-```
-or
-
-```
-composer install
-```
-
 Copy file .env.example to .env
 
 ```
@@ -57,6 +46,17 @@ SESSION_DRIVER=file
 MAIL_DRIVER=sendmail
 MAIL_ADDRESS=demo@demo.com
 MAIL_NAME=BackendL5
+```
+
+Composer install (first download composer from <a href="https://getcomposer.org/download/" target="_blank">here</a>)
+
+```
+php composer.phar install
+```
+or
+
+```
+composer install
 ```
 
 Regenerate APP_KEY
