@@ -24,6 +24,12 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
+     * Number login attempts
+     * @var integer
+     */
+    protected $maxLoginAttempts = 3;
+
+    /**
      * Create a new authentication controller instance.
      *
      * @return void
@@ -61,15 +67,5 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-    }
-
-    /**
-     * Get the failed login message.
-     *
-     * @return string
-     */
-    protected function getFailedLoginMesssage()
-    {
-        return trans('messages.validemail');
     }
 }
