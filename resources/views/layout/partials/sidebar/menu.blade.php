@@ -1,6 +1,6 @@
 <ul class="sidebar-menu">
     @foreach ($menus as $key => $menu)
-        @if ($menu['visible'])
+        @can($menu['permission'])
         <li class="treeview {{ ($key==$active) ? 'active' : '' }}">
             <a href="#">
                 <i class="fa {{ $menu['icon'] }}"></i><span class="fa-fw">{{ trans($menu['name']) }}</span><i class="fa fa-angle-left pull-right"></i>
@@ -12,6 +12,6 @@
                 @endif
             </ul>
         </li>
-        @endif
+        @endcan
     @endforeach
 </ul>

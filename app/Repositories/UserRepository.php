@@ -37,6 +37,13 @@ class UserRepository extends Repository
             $data['password'] = bcrypt($data['password']);
         }
 
-        return parent::save($id, $data);
+        $user = parent::save($id, $data);
+
+        //Assing user roles
+        if (count($data['roles']) > 0) {
+            $user->roles()->sync($data['roles']);
+        }
+
+        return $user;
     }
 }

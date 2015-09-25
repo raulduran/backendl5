@@ -15,7 +15,7 @@ class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword, HasRoles;
 
     /**
      * The database table used by the model.
@@ -29,7 +29,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'role', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -38,21 +38,28 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
+    /**
+     * Get From
+     * @return string
+     */
     public function getFromAttribute()
     {
         return Date::parse($this->created_at)->format('M. Y');
     }
 
+    /**
+     * Get Created
+     * @return string
+     */
     public function getCreatedAttribute()
     {
         return Date::parse($this->created_at)->format('d-m-Y');
     }
 
-    public function getRoleNameAttribute()
-    {
-        return trans('messages.role.'.$this->role);
-    }
-
+    /**
+     * Get Avatar
+     * @return string
+     */
     public function getAvatarAttribute()
     {
         return "http://www.gravatar.com/avatar/".md5($this->email);

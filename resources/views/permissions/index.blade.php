@@ -18,7 +18,7 @@
     <tr>
         <td class="text-center"><input type="checkbox" name="ids[]" value="{{ $permission->id }}" class="chbids" /></td>
         <td class="text-center">{{ $permission->id }}</td>
-        <td>{{ $permission->name }}</td>
+        <td>{{ $permission->label }}</td>
         <td class="text-center">{{ $permission->created }}</td>
         <td class="text-center">
             <a href="{{ route('admin.permissions.show', $permission->id) }}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a> 

@@ -2,6 +2,7 @@
 
 use Illuminate\Auth\Guard;
 use App\Http\Requests\Request;
+use App\Role;
 
 class UserRequest extends Request
 {
@@ -35,11 +36,10 @@ class UserRequest extends Request
     public function rules()
     {
         $validate_email = ($this->method=='POST') ? 'required|email|unique:users,email' : 'required|email|unique:users,email,'.$this->segment(3);
-        $validate_role = ($this->user->role=='admin') ? 'admin,manager,user' : 'user';
 
         return [
             'email' => $validate_email,
-            'role' => 'required|in:'.$validate_role,
+            'roles' => 'required',
             'name' => 'required',
             'password' => ($this->method=='POST') ? 'required|min:6' : 'min:6'
         ];

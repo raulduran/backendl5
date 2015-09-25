@@ -121,5 +121,7 @@ return array(
         'kcal' => 'Gasto energético',
         'role' => 'Rol',
         'label' => 'Etiqueta',
+        'roles' => 'Roles',
+        'permissions' => 'Permisos',
     ),
 );

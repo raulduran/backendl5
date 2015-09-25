@@ -1,10 +1,12 @@
-<?php namespace App;
+<?php
+
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Date\Date;
 
-class Permission extends Model {
-
+class Permission extends Model
+{
     /**
      * The attributes that are mass assignable.
      *
@@ -20,5 +22,14 @@ class Permission extends Model {
     public function getCreatedAttribute()
     {
         return Date::parse($this->created_at)->format('d-m-Y');
+    }
+
+    /**
+     * Roles relation
+     * @return Roles
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }

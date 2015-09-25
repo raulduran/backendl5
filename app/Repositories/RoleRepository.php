@@ -11,7 +11,7 @@ class RoleRepository extends Repository {
         'created_at'
     ];
 
-    public function __construct(Role $role, $paginate=true)
+    public function __construct(Role $role)
     {
         $this->model = $role;
     }
@@ -26,6 +26,7 @@ class RoleRepository extends Repository {
 
             $query->where('roles.id', 'LIKE', '%' . $search . '%')
                 ->orWhere('roles.name', 'LIKE', '%' . $search . '%')
+                ->orWhere('roles.label', 'LIKE', '%' . $search . '%')
             ;
         }
 

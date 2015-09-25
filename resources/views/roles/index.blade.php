@@ -18,7 +18,7 @@
     <tr>
         <td class="text-center"><input type="checkbox" name="ids[]" value="{{ $role->id }}" class="chbids" /></td>
         <td class="text-center">{{ $role->id }}</td>
-        <td>{{ $role->name }}</td>
+        <td>{{ $role->label }}</td>
         <td class="text-center">{{ $role->created }}</td>
         <td class="text-center">
             <a href="{{ route('admin.roles.show', $role->id) }}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a> 

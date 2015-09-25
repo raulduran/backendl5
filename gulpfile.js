@@ -1,11 +1,13 @@
 var elixir = require('laravel-elixir');
 
+elixir.config.sourcemaps = false;
+
 elixir(function(mix) {
 
     var assets = "resources/assets/";
 
     mix.styles([
-        "css/import.css",
+        //"css/import.css",
         "themes/adminlte/bootstrap/css/bootstrap.min.css",
         "css/font-awesome.min.css",
         "css/ionicons.min.css",
@@ -43,6 +45,7 @@ elixir(function(mix) {
         "js/selectize.js",
         "js/custom.js",
     ], "public/js/theme.js", assets);
+
     mix.version(["public/css/theme.css", "public/js/theme.js"]);
     mix.copy(assets+'fonts', 'public/build/fonts');
 });

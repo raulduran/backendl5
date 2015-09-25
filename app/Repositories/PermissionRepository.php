@@ -11,7 +11,7 @@ class PermissionRepository extends Repository {
         'created_at'
     ];
 
-    public function __construct(Permission $permission, $paginate=true)
+    public function __construct(Permission $permission)
     {
         $this->model = $permission;
     }
@@ -26,6 +26,7 @@ class PermissionRepository extends Repository {
 
             $query->where('permissions.id', 'LIKE', '%' . $search . '%')
                 ->orWhere('permissions.name', 'LIKE', '%' . $search . '%')
+                ->orWhere('permissions.label', 'LIKE', '%' . $search . '%')
             ;
         }
 

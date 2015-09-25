@@ -1,21 +1,21 @@
 <?php
 return [
     'users' => [
-        'visible' => true,
+        'permission' => 'admin_user',
         'icon' => 'fa-users',
         'edit' => true,
         'name' => 'messages.users.index'
     ],
-    'permissions' => [
-        'visible' => true,
-        'icon' => 'fa-users',
-        'edit' => true,
-        'name' => 'messages.permissions.index'
-    ],
     'roles' => [
-        'visible' => true,
-        'icon' => 'fa-users',
+        'permission' => 'admin_user',
+        'icon' => 'fa-get-pocket',
         'edit' => true,
         'name' => 'messages.roles.index'
+    ],
+    'permissions' => [
+        'permission' => 'admin_user',
+        'icon' => 'fa-lock',
+        'edit' => true,
+        'name' => 'messages.permissions.index'
     ],
 ];
