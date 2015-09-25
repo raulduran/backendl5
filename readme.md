@@ -70,7 +70,7 @@ Migrate tables
 php artisan migrate
 ```
 
-Install demo user (optional)
+Install demo user, roles and permissions (optional)
 
 ```
 php artisan db:seed
@@ -97,15 +97,10 @@ Edit file config/custom.php
 
 ```
 return [
-	
 	'name' => 'BackendL5',
-
 	'htmlname' => '<b>Backend</b>L5',
-
 	'url' => 'https://github.com/raulduran/backendl5/',
-
 	'paginate' => '20'
-
 ];
 ```
 
@@ -152,7 +147,7 @@ Add menu in array menus in app/config/menus.php
 
 ```
 'articles' => [
-	'visible' => true,
+	'permission' => 'admin_article', //Add admin_article to Permissions table and assing a Role.
 	'icon' => 'fa-file-o',
 	'edit' => true,
 	'name' => 'messages.articles.index'
