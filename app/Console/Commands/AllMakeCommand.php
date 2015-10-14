@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class AllMakeCommand extends Command
 {
@@ -39,9 +40,21 @@ class AllMakeCommand extends Command
      */
     protected function getArguments()
     {
-        return array(
-            array('name', InputArgument::REQUIRED, 'The name of resource'),
-        );
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of resource']
+        ];
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['fields', null, InputOption::VALUE_OPTIONAL, 'Fields for the form and table migration', 'name:string']
+        ];
     }
 
     /**
@@ -53,19 +66,27 @@ class AllMakeCommand extends Command
     {
         $name = $this->getNameInput();
 
+        $fields = $this->option('fields');
+
+        $nameFirstUpper = ucfirst($name);
+        $nameFirstUpperSingular = str_singular($nameFirstUpper);
+
+        echo $fields;
+        exit();
+
         //Create controller
-        $this->call('bl5:controller', ['name' => ucfirst($name).'Controller']);
+        $this->call('bl5:controller', ['name' => $nameFirstUpper.'Controller']);
         //Create views
         $this->call('bl5:views', ['name' => $name]);
         //Create request
-        $this->call('bl5:request', ['name' => str_singular(ucfirst($name)).'Request']);
+        $this->call('bl5:request', ['name' => $nameFirstUpperSingular.'Request']);
         //Create form
-        $this->call('bl5:form', ['name' => str_singular(ucfirst($name)).'Form']);
+        $this->call('make:form', ['name' => 'Forms/'.$nameFirstUpperSingular, '--fields' => $fields]);
         //Create repositroy
-        $this->call('bl5:repository', ['name' => str_singular(ucfirst($name)).'Repository']);
+        $this->call('bl5:repository', ['name' => $nameFirstUpperSingular.'Repository']);
         //Create model
-        $this->call('bl5:model', ['name' => str_singular(ucfirst($name))]);
+        $this->call('bl5:model', ['name' => $nameFirstUpperSingular]);
         //Migration table
-        $this->call('make:migration:schema', ['name' => 'create_'.$name.'_table', '--schema' => 'name:string']);
+        $this->call('make:migration:schema', ['name' => 'create_'.$name.'_table', '--schema' => $fields]);
     }
 }
