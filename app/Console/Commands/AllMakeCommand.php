@@ -71,9 +71,6 @@ class AllMakeCommand extends Command
         $nameFirstUpper = ucfirst($name);
         $nameFirstUpperSingular = str_singular($nameFirstUpper);
 
-        echo $fields;
-        exit();
-
         //Create controller
         $this->call('bl5:controller', ['name' => $nameFirstUpper.'Controller']);
         //Create views
