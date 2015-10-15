@@ -21,6 +21,9 @@ th, td{vertical-align: middle !important;}
 
 .pagination{margin: 0;}
 
+/*.breadcrumb{margin: 0; background: none;}
+.content-header{margin: 0; background: none; padding-top: 0;}*/
+
 @media only screen and (max-width: 600px) {
     .content-header h1{float: none; width: 100%;}
     .toolbars{float: none; width: 100%;margin-top: 0.5em;}

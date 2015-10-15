@@ -1,4 +1,5 @@
 <div class="content-wrapper">
+    <!--@include('layout.partials.breadcrumb')-->
     <section class="content-header">
         <h1>
             @yield('title', trans('messages.'.$route['current']))
