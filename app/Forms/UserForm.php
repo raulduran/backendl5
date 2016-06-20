@@ -2,8 +2,8 @@
 
 namespace App\Forms;
 
+use App\Models\Role;
 use Kris\LaravelFormBuilder\Form;
-use App\Role;
 
 class UserForm extends Form
 {

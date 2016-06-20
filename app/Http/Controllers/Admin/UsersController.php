@@ -2,31 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
-use App\Http\Controllers\Controller;
-use App\Repositories\UserRepository as User;
-use App\Http\Requests\UserRequest;
 
 class UsersController extends Controller
 {
-    /**
-     * Repostory user
-     *
-     * @var UserRepository
-     */
-    private $user;
-
-    /**
-     * Construc controller.
-     *
-     * @param  User $user
-     */
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +18,7 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $results = $this->user->search($request);
+        $results = User::results($request);
 
         return view('users.index', compact('results', 'request'));
     }
@@ -64,7 +47,7 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = $this->user->save(null, $request->all());
+        $user = User::create($request->all());
 
         $route = ($request->get('task')=='apply') ? route('admin.users.edit', $user->id) : route('admin.users.index');
 
@@ -80,28 +63,24 @@ class UsersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = $this->user->getModel()->findOrFail($id);
-
         return view('users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @param  FormBuilder  $formBuilder
      * @return Response
      */
-    public function edit($id, FormBuilder $formBuilder)
+    public function edit(User $user, FormBuilder $formBuilder)
     {
-        $user = $this->user->getModel()->findOrFail($id);
-
         $form = $formBuilder->create('App\Forms\UserForm', [
             'model' => $user,
             'method' => 'PATCH',
-            'url' => route('admin.users.update', $id)
+            'url' => route('admin.users.update', $user->id)
         ]);
 
         return view('layout.partials.form', compact('form'));
@@ -110,15 +89,13 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
-     * @param  UserRequest  $request
+     * @param  User $user
+     * @param  UserRequest $request
      * @return Response
      */
-    public function update($id, UserRequest $request)
+    public function update(User $user, UserRequest $request)
     {
-        $data = ($request->has('password')) ? $request->all() : $request->except('password');
-
-        $this->user->save($id, $data);
+        $user->update($request->all());
 
         $route = ($request->get('task')=='apply') ? route('admin.users.edit', $id) : route('admin.users.index');
 
@@ -131,12 +108,12 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $this->user->getModel()->findOrFail($id)->delete();
+        $user->delete();
 
         return redirect(route('admin.users.index'))->with([
             'status' => trans('messages.deleted'),
@@ -152,7 +129,7 @@ class UsersController extends Controller
      */
     public function delete(Request $request)
     {
-        $this->user->deleteAll($request->get('ids'));
+        User::destroy($request->get('ids'));
 
         return redirect(route('admin.users.index'))->with([
             'status' => trans('messages.deleted'),

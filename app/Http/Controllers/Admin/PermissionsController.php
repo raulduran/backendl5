@@ -2,31 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\PermissionRequest;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\PermissionRepository as Permission;
-use App\Http\Requests\PermissionRequest;
-
 class PermissionsController extends Controller {
-
-    /**
-     * Repostory permission
-     *
-     * @var PermissionRepository
-     */
-    private $permission;
-
-    /**
-     * Construc controller.
-     *
-     * @param  Permission $permission
-     */
-    public function __construct(Permission $permission)
-    {
-        $this->permission = $permission;
-    }
 
     /**
      * Display a listing of the resource.
@@ -36,7 +18,7 @@ class PermissionsController extends Controller {
      */
     public function index(Request $request)
     {
-        $results = $this->permission->search($request);
+        $results = Permission::results($request);
 
         return view('permissions.index', compact('results', 'request'));
     }
@@ -65,12 +47,12 @@ class PermissionsController extends Controller {
      */
     public function store(PermissionRequest $request)
     {
-        $permission = $this->permission->save(null, $request->all());
+        $permission = Permission::create($request->all());
 
         $route = ($request->get('task')=='apply') ? route('admin.permissions.edit', $permission->id) : route('admin.permissions.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'), 
+            'status' => trans('messages.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -78,31 +60,27 @@ class PermissionsController extends Controller {
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Permission $permission
      * @return Response
      */
-    public function show($id)
+    public function show(Permission $permission)
     {
-        $permission = $this->permission->getModel()->findOrFail($id);
-
         return view('permissions.show', compact('permission'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @param  FormBuilder  $formBuilder
+     * @param  Permission $permission
+     * @param  FormBuilder $formBuilder
      * @return Response
      */
-    public function edit($id, FormBuilder $formBuilder)
+    public function edit(Permission $permission, FormBuilder $formBuilder)
     {
-        $permission = $this->permission->getModel()->findOrFail($id);
-
         $form = $formBuilder->create('App\Forms\PermissionForm', [
             'model' => $permission,
             'method' => 'PATCH',
-            'url' => route('admin.permissions.update', $id)
+            'url' => route('admin.permissions.update', $permission->id)
         ]);
 
         return view('layout.partials.form', compact('form'));
@@ -111,18 +89,18 @@ class PermissionsController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
-     * @param  PermissionRequest  $request
+     * @param  Permission $permission
+     * @param  PermissionRequest $request
      * @return Response
      */
-    public function update($id, PermissionRequest $request)
+    public function update(Permission $permission, PermissionRequest $request)
     {
-        $this->permission->save($id, $request->all());
+        $permission->update($request->all());
 
-        $route = ($request->get('task')=='apply') ? route('admin.permissions.edit', $id) : route('admin.permissions.index');
+        $route = ($request->get('task')=='apply') ? route('admin.permissions.edit', $permission->id) : route('admin.permissions.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'), 
+            'status' => trans('messages.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -130,15 +108,15 @@ class PermissionsController extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Permission $permission
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Permission $permission)
     {
-        $this->permission->getModel()->findOrFail($id)->delete();
+        $permission->delete();
 
         return redirect(route('admin.permissions.index'))->with([
-            'status' => trans('messages.deleted'), 
+            'status' => trans('messages.deleted'),
             'type-status' => 'success'
         ]);
     }
@@ -151,10 +129,10 @@ class PermissionsController extends Controller {
      */
     public function delete(Request $request)
     {
-        $this->permission->deleteAll($request->get('ids'));      
+        Permission::destroy($request->get('ids'));
 
         return redirect(route('admin.permissions.index'))->with([
-            'status' => trans('messages.deleted'), 
+            'status' => trans('messages.deleted'),
             'type-status' => 'success'
         ]);
     }

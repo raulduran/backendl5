@@ -1,11 +1,8 @@
-<?php 
+<?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Jenssegers\Date\Date;
-
-class Role extends Model
+class Role extends ModelApp
 {
     /**
      * The attributes that are mass assignable.
@@ -15,14 +12,16 @@ class Role extends Model
     protected $fillable = ['name', 'label'];
 
     /**
-     * Get the created date
-     *
-     * @return string
+     * Order fields allowed
+     * @var array
      */
-    public function getCreatedAttribute()
-    {
-        return Date::parse($this->created_at)->format('d-m-Y');
-    }
+    protected $order_fields_allowed = ['id', 'name', 'created_at'];
+
+    /**
+     * Filters for search request
+     * @var array
+     */
+    protected $filters_for_search = ['roles.id', 'roles.name', 'roles.label'];
 
     /**
      * Permissions relation

@@ -2,31 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleRequest;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\RoleRepository as Role;
-use App\Http\Requests\RoleRequest;
-
 class RolesController extends Controller {
-
-    /**
-     * Repostory role
-     *
-     * @var RoleRepository
-     */
-    private $role;
-
-    /**
-     * Construc controller.
-     *
-     * @param  Role $role
-     */
-    public function __construct(Role $role)
-    {
-        $this->role = $role;
-    }
 
     /**
      * Display a listing of the resource.
@@ -36,7 +18,7 @@ class RolesController extends Controller {
      */
     public function index(Request $request)
     {
-        $results = $this->role->search($request);
+        $results = Role::results($request);
 
         return view('roles.index', compact('results', 'request'));
     }
@@ -65,12 +47,12 @@ class RolesController extends Controller {
      */
     public function store(RoleRequest $request)
     {
-        $role = $this->role->save(null, $request->all());
+        $role = Role::create($request->all());
 
         $route = ($request->get('task')=='apply') ? route('admin.roles.edit', $role->id) : route('admin.roles.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'), 
+            'status' => trans('messages.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -78,31 +60,26 @@ class RolesController extends Controller {
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Role $role
      * @return Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        $role = $this->role->getModel()->findOrFail($id);
-
         return view('roles.show', compact('role'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @param  FormBuilder  $formBuilder
      * @return Response
      */
-    public function edit($id, FormBuilder $formBuilder)
+    public function edit(Role $role, FormBuilder $formBuilder)
     {
-        $role = $this->role->getModel()->findOrFail($id);
-
         $form = $formBuilder->create('App\Forms\RoleForm', [
             'model' => $role,
             'method' => 'PATCH',
-            'url' => route('admin.roles.update', $id)
+            'url' => route('admin.roles.update', $role->id)
         ]);
 
         return view('layout.partials.form', compact('form'));
@@ -111,18 +88,18 @@ class RolesController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  Role  $role
      * @param  RoleRequest  $request
      * @return Response
      */
-    public function update($id, RoleRequest $request)
+    public function update(Role $role, RoleRequest $request)
     {
-        $this->role->save($id, $request->all());
+        $role->update($request->all());
 
-        $route = ($request->get('task')=='apply') ? route('admin.roles.edit', $id) : route('admin.roles.index');
+        $route = ($request->get('task')=='apply') ? route('admin.roles.edit', $role->id) : route('admin.roles.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'), 
+            'status' => trans('messages.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -130,15 +107,15 @@ class RolesController extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Role $role
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        $this->role->getModel()->findOrFail($id)->delete();
+        $role->delete();
 
         return redirect(route('admin.roles.index'))->with([
-            'status' => trans('messages.deleted'), 
+            'status' => trans('messages.deleted'),
             'type-status' => 'success'
         ]);
     }
@@ -151,10 +128,10 @@ class RolesController extends Controller {
      */
     public function delete(Request $request)
     {
-        $this->role->deleteAll($request->get('ids'));      
+        Role::destroy($request->get('ids'));
 
         return redirect(route('admin.roles.index'))->with([
-            'status' => trans('messages.deleted'), 
+            'status' => trans('messages.deleted'),
             'type-status' => 'success'
         ]);
     }

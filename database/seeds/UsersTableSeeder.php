@@ -1,9 +1,9 @@
 <?php
 
+use App\Models\Role;
+use App\Models\Permission;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use App\User;
-use App\Role;
-use App\Permission;
 
 class UsersTableSeeder extends Seeder
 {
@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
         $admin = User::create([
             'email' => 'demo@demo.com',
             'name' => 'Demo User',
-            'password' => bcrypt('demo')
+            'password' => 'demo'
         ]);
 
         //Roles
