@@ -79,8 +79,6 @@ class AllMakeCommand extends Command
         $this->call('bl5:request', ['name' => $nameFirstUpperSingular.'Request']);
         //Create form
         $this->call('make:form', ['name' => 'Forms/'.$nameFirstUpperSingular.'Form', '--fields' => $fields]);
-        //Create repositroy
-        $this->call('bl5:repository', ['name' => $nameFirstUpperSingular.'Repository']);
         //Create model
         $this->call('bl5:model', ['name' => $nameFirstUpperSingular]);
         //Migration table

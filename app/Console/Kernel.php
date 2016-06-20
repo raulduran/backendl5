@@ -16,7 +16,6 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\AllMakeCommand::class,
         \App\Console\Commands\AdminControllerMakeCommand::class,
         \App\Console\Commands\ApiControllerMakeCommand::class,
-        \App\Console\Commands\RepositoryMakeCommand::class,
         \App\Console\Commands\RequestMakeCommand::class,
         \App\Console\Commands\FormMakeCommand::class,
         \App\Console\Commands\ModelMakeCommand::class,

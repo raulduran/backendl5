@@ -2,31 +2,13 @@
 
 namespace DummyNamespace;
 
+use DummyRootNamespaceHttp\Controllers\Controller;
+use DummyRootNamespaceHttp\Requests\{{Model}}Request;
+use DummyRootNamespaceModels\{{Model}};
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 
-use DummyRootNamespaceHttp\Controllers\Controller;
-use DummyRootNamespaceRepositories\{{Model}}Repository as {{Model}};
-use DummyRootNamespaceHttp\Requests\{{Model}}Request;
-
 class DummyClass extends Controller {
-
-    /**
-     * Repostory {{model}}
-     *
-     * @var {{Model}}Repository
-     */
-    private ${{model}};
-
-    /**
-     * Construc controller.
-     *
-     * @param  {{Model}} ${{model}}
-     */
-    public function __construct({{Model}} ${{model}})
-    {
-        $this->{{model}} = ${{model}};
-    }
 
     /**
      * Display a listing of the resource.
@@ -36,7 +18,7 @@ class DummyClass extends Controller {
      */
     public function index(Request $request)
     {
-        $results = $this->{{model}}->search($request);
+        $results = {{Model}}::results($request);
 
         return view('{{models}}.index', compact('results', 'request'));
     }
@@ -65,12 +47,12 @@ class DummyClass extends Controller {
      */
     public function store({{Model}}Request $request)
     {
-        ${{model}} = $this->{{model}}->save(null, $request->all());
+        ${{model}} = {{Model}}::create($request->all());
 
         $route = ($request->get('task')=='apply') ? route('admin.{{models}}.edit', ${{model}}->id) : route('admin.{{models}}.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'), 
+            'status' => trans('messages.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -78,31 +60,27 @@ class DummyClass extends Controller {
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  {{Model}} ${{model}}
      * @return Response
      */
-    public function show($id)
+    public function show({{Model}} ${{model}})
     {
-        ${{model}} = $this->{{model}}->getModel()->findOrFail($id);
-
         return view('{{models}}.show', compact('{{model}}'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  {{Model}} ${{model}}
      * @param  FormBuilder  $formBuilder
      * @return Response
      */
-    public function edit($id, FormBuilder $formBuilder)
+    public function edit({{Model}} ${{model}}, FormBuilder $formBuilder)
     {
-        ${{model}} = $this->{{model}}->getModel()->findOrFail($id);
-
         $form = $formBuilder->create('App\Forms\{{Model}}Form', [
             'model' => ${{model}},
             'method' => 'PATCH',
-            'url' => route('admin.{{models}}.update', $id)
+            'url' => route('admin.{{models}}.update', ${{model}}->id)
         ]);
 
         return view('layout.partials.form', compact('form'));
@@ -111,18 +89,18 @@ class DummyClass extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  {{Model}} ${{model}}
      * @param  {{Model}}Request  $request
      * @return Response
      */
-    public function update($id, {{Model}}Request $request)
+    public function update({{Model}} ${{model}}, {{Model}}Request $request)
     {
-        $this->{{model}}->save($id, $request->all());
+        ${{model}}->update($request->all());
 
-        $route = ($request->get('task')=='apply') ? route('admin.{{models}}.edit', $id) : route('admin.{{models}}.index');
+        $route = ($request->get('task')=='apply') ? route('admin.{{models}}.edit', ${{model}}->id) : route('admin.{{models}}.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'), 
+            'status' => trans('messages.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -130,15 +108,15 @@ class DummyClass extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  {{Model}} ${{model}}
      * @return Response
      */
-    public function destroy($id)
+    public function destroy({{Model}} ${{model}})
     {
-        $this->{{model}}->getModel()->findOrFail($id)->delete();
+        ${{model}}->delete();
 
         return redirect(route('admin.{{models}}.index'))->with([
-            'status' => trans('messages.deleted'), 
+            'status' => trans('messages.deleted'),
             'type-status' => 'success'
         ]);
     }
@@ -151,10 +129,10 @@ class DummyClass extends Controller {
      */
     public function delete(Request $request)
     {
-        $this->{{model}}->deleteAll($request->get('ids'));      
+        {{Model}}::deleteAll($request->get('ids'));
 
         return redirect(route('admin.{{models}}.index'))->with([
-            'status' => trans('messages.deleted'), 
+            'status' => trans('messages.deleted'),
             'type-status' => 'success'
         ]);
     }

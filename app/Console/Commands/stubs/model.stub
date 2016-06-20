@@ -2,10 +2,7 @@
 
 namespace DummyNamespace;
 
-use Illuminate\Database\Eloquent\Model;
-use Jenssegers\Date\Date;
-
-class DummyClass extends Model {
+class DummyClass extends ModelApp {
 
     /**
      * The attributes that are mass assignable.
@@ -15,12 +12,8 @@ class DummyClass extends Model {
     protected $fillable = ['name'];
 
     /**
-     * Get the created date
-     *
-     * @return string
+     * Order fields allowed
+     * @var array
      */
-    public function getCreatedAttribute()
-    {
-        return Date::parse($this->created_at)->format('d-m-Y');
-    }
+    protected $order_fields_allowed = ['id', 'name', 'created_at'];
 }

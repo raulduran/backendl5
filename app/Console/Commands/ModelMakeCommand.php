@@ -45,6 +45,6 @@ class ModelMakeCommand extends CustomGeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace;
+        return $rootNamespace.'\Models';
     }
 }

@@ -2,29 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use DummyRootNamespaceHttp\Controllers\Controller;
+use DummyRootNamespaceModels\{{Model}};
 use Illuminate\Http\Request;
 
-use DummyRootNamespaceHttp\Controllers\Controller;
-use DummyRootNamespaceRepositories\{{Model}}Repository as {{Model}};
-
 class DummyClass extends Controller {
-
-    /**
-     * Repostory {{model}}
-     *
-     * @var {{Model}}Repository
-     */
-    private ${{model}};
-
-    /**
-     * Construc controller.
-     *
-     * @param  {{Model}} ${{model}}
-     */
-    public function __construct({{Model}} ${{model}})
-    {
-        $this->{{model}} = ${{model}};
-    }
 
     /**
      * Display a listing of the resource.
@@ -34,7 +16,7 @@ class DummyClass extends Controller {
      */
     public function index(Request $request)
     {
-        $results = $this->{{model}}->search($request);
+        $results = {{Model}}::search($request)->get();
 
         return $results;
     }
@@ -42,13 +24,11 @@ class DummyClass extends Controller {
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  {{Model}} ${{model}}
      * @return Response
      */
-    public function show($id)
+    public function show({{Model}} ${{model}})
     {
-        ${{model}} = $this->{{model}}->getModel()->findOrFail($id);
-
         return ${{model}};
     }
 }
