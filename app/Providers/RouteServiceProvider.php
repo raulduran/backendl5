@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
+use Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,17 +18,6 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers';
 
     /**
-     * Array router models
-     *
-     * @var array
-     */
-    protected $models = [
-        'users' => 'App\Models\User',
-        'roles' => 'App\Models\Role',
-        'permissions' => 'App\Models\Permission',
-    ];
-
-    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @param  \Illuminate\Routing\Router  $router
@@ -35,22 +25,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
+        Route::singularResourceParameters();
+
         parent::boot($router);
-
-        $this->setRouterModels($router);
-    }
-
-    /**
-     * Set router model
-     *
-     * @param  \Illuminate\Routing\Router  $router
-     * @return void
-     */
-    protected function setRouterModels(Router $router)
-    {
-        foreach ($this->models as $key => $model) {
-            $router->model($key, $model);
-        }
     }
 
     /**
