@@ -17,8 +17,6 @@ class UsersTableSeeder extends Seeder
         DB::table('permissions')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
-        $faker = Faker\Factory::create();
-
         //User
         $admin = User::create([
             'email' => 'demo@demo.com',

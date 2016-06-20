@@ -1,4 +1,6 @@
-<?php namespace App\Forms;
+<?php
+
+namespace App\Forms;
 
 use App\Permission;
 use Kris\LaravelFormBuilder\Form;
@@ -7,12 +9,12 @@ class RoleForm extends Form
 {
     protected function getPermissions()
     {
-        return Permission::lists('label', 'id')->toArray();
+        return Permission::pluck('label', 'id')->toArray();
     }
 
     protected function getPermissionsSelected()
     {
-        return !isset($this->model->id) ?: $this->model->permissions()->lists('id')->toArray();
+        return !isset($this->model->id) ?: $this->model->permissions()->pluck('id')->toArray();
     }
 
     public function buildForm()

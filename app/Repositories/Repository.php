@@ -1,4 +1,6 @@
-<?php namespace App\Repositories;
+<?php
+
+namespace App\Repositories;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
@@ -47,7 +49,7 @@ abstract class Repository
 
     public function getList($field='name')
     {
-        return $this->model->lists($field, 'id');
+        return $this->model->pluck($field, 'id');
     }
 
     public function getAllPaginate()

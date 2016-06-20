@@ -1,4 +1,6 @@
-<?php namespace App\Forms;
+<?php
+
+namespace App\Forms;
 
 use Kris\LaravelFormBuilder\Form;
 use App\Role;
@@ -7,12 +9,12 @@ class UserForm extends Form
 {
     protected function getRoles()
     {
-        return Role::lists('label', 'id')->toArray();
+        return Role::pluck('label', 'id')->toArray();
     }
 
     protected function getRolesSelected()
     {
-        return !isset($this->model->id) ?: $this->model->roles()->lists('id')->toArray();
+        return !isset($this->model->id) ?: $this->model->roles()->pluck('id')->toArray();
     }
 
     public function buildForm()

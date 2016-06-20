@@ -1,7 +1,9 @@
-<?php namespace App\Composers;
+<?php
 
+namespace App\Composers;
+
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
-use Illuminate\Auth\Guard;
 
 class AuthComposer
 {
