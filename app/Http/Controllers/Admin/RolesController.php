@@ -52,7 +52,7 @@ class RolesController extends Controller {
         $route = ($request->get('task')=='apply') ? route('admin.roles.edit', $role->id) : route('admin.roles.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'),
+            'status' => trans('custom/app.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -99,7 +99,7 @@ class RolesController extends Controller {
         $route = ($request->get('task')=='apply') ? route('admin.roles.edit', $role->id) : route('admin.roles.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'),
+            'status' => trans('custom/app.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -115,7 +115,7 @@ class RolesController extends Controller {
         $role->delete();
 
         return redirect(route('admin.roles.index'))->with([
-            'status' => trans('messages.deleted'),
+            'status' => trans('custom/app.deleted'),
             'type-status' => 'success'
         ]);
     }
@@ -131,7 +131,7 @@ class RolesController extends Controller {
         Role::destroy($request->get('ids'));
 
         return redirect(route('admin.roles.index'))->with([
-            'status' => trans('messages.deleted'),
+            'status' => trans('custom/app.deleted'),
             'type-status' => 'success'
         ]);
     }

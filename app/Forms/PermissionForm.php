@@ -9,8 +9,8 @@ class PermissionForm extends Form
     public function buildForm()
     {
         $this
-            ->add('name', 'text', ['label' => trans('messages.name')])
-            ->add('label', 'text', ['label' => trans('messages.label')])
+            ->add('name', 'text', ['label' => trans('custom/app.name')])
+            ->add('label', 'text', ['label' => trans('custom/app.label')])
             ->add('task', 'hidden')
         ;
     }

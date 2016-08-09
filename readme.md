@@ -117,9 +117,6 @@ or for steps
 //Create controller
 php artisan bl5:controller ArticlesController
 
-//Create repository
-php artisan bl5:repository ArticleRepository
-
 //Create Model
 php artisan bl5:model Article
 

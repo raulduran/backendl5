@@ -9,7 +9,7 @@ class DummyClass extends Form
     public function buildForm()
     {
         $this
-            ->add('name', 'text', ['label' => trans('messages.name')])
+            ->add('name', 'text', ['label' => trans('custom/app.name')])
             ->add('task', 'hidden')
         ;
     }

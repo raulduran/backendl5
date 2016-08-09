@@ -4,6 +4,6 @@
     </div>
     <div class="pull-left info">
         <p>{{ $auth->name }}</p>
-        <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('messages.connected') }}</a>
+        <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('custom/app.connected') }}</a>
     </div>
 </div>

@@ -20,12 +20,12 @@ class RoleForm extends Form
     public function buildForm()
     {
         $this
-            ->add('name', 'text', ['label' => trans('messages.name')])
-            ->add('label', 'text', ['label' => trans('messages.label')])
+            ->add('name', 'text', ['label' => trans('custom/app.name')])
+            ->add('label', 'text', ['label' => trans('custom/app.label')])
             ->add('permissions', 'select', [
                 'choices' => $this->getPermissions(),
                 'selected' => $this->getPermissionsSelected(),
-                'label' => trans('messages.permissions.index'),
+                'label' => trans('custom/permissions.index'),
                 'attr' => [
                     'multiple' => true,
                     'id' => 'permissions'

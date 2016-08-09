@@ -13,18 +13,18 @@
         $('.btn-remove').click(function(e) {
             e.preventDefault();
             bootbox.dialog({
-              message: "{{ trans('messages.'.$route['table'].'.delete.message') }}",
-              title: "{{ trans('messages.'.$route['table'].'.delete.title') }}",
+              message: "{{ trans('custom/'.$route['table'].'.delete.message') }}",
+              title: "{{ trans('custom/'.$route['table'].'.delete.title') }}",
                 buttons: {
                     success: {
-                        label: "{{ trans('messages.yes') }}",
+                        label: "{{ trans('custom/app.yes') }}",
                         className: "btn-primary",
                         callback: function() {
                             frmList.submit();
                         }
                     },
                     danger: {
-                        label: "{{ trans('messages.no') }}",
+                        label: "{{ trans('custom/app.no') }}",
                         className: "btn-default",
                     },
               }
@@ -65,8 +65,8 @@
 
 @section('toolbars')
 <div class="toolbars">
-    <a class="btn btn-success btn-new"><i class="fa fa-fw fa-plus"></i>{{ trans('messages.new') }}</a>
-    <a class="btn btn-danger btn-remove hide"><i class="fa fa-fw fa-times"></i>{{ trans('messages.delete') }}</a>
+    <a class="btn btn-success btn-new"><i class="fa fa-fw fa-plus"></i>@lang('custom/app.new')</a>
+    <a class="btn btn-danger btn-remove hide"><i class="fa fa-fw fa-times"></i>@lang('custom/app.delete')</a>
 </div>
 @stop
 
@@ -98,7 +98,7 @@
                 @endif
                 @else
                 <div class="box-body">
-                    <p class="text-center">{{ trans('messages.nodata') }}</p>
+                    <p class="text-center">{{ trans('custom/app.nodata') }}</p>
                 </div>
                 @endif
             </div>

@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'welcome' => 'Bienvenido a :name',
     'login.title' => 'Iniciar sesion',
     'register.title' => 'Nueva cuenta',
@@ -137,53 +136,11 @@ return [
 
     'actions' => 'Acciones',
 
-    'user' => 'Usuario',
-    'users.index' => 'Usuarios',
-    'users.create' => 'Nuevo usuario',
-    'users.edit' => 'Editar usuario',
-    'users.show' => 'Ver usuario',
-    'users.delete.title' => 'Eliminar usuario',
-    'users.delete.message' => '¿Está seguro de que quiere continuar?',
-
-    'role' => 'Rol',
-    'roles.index' => 'Roles',
-    'roles.create' => 'Nuevo rol',
-    'roles.edit' => 'Editar rol',
-    'roles.show' => 'Ver rol',
-    'roles.delete.title' => 'Eliminar rol',
-    'roles.delete.message' => '¿Está seguro de que quiere continuar?',
-
-    'permission' => 'Permiso',
-    'permissions.index' => 'Permisos',
-    'permissions.create' => 'Nuevo permiso',
-    'permissions.edit' => 'Editar permiso',
-    'permissions.show' => 'Ver permiso',
-    'permissions.delete.title' => 'Eliminar permiso',
-    'permissions.delete.message' => '¿Está seguro de que quiere continuar?',
-
-    'messages' => 'Mensajes',
-    'message' => 'Mensaje',
-    'message.new' => 'Nuevo mensaje',
-    'messages.new' => 'Nuevo mensaje',
-
     'filter.nopermission' => 'No tienes permisos para ver esta sección',
     'filter.noauth' => 'No autentificado',
 
     'search' => 'Buscar',
     'filter' => 'Filtrar',
-
-    'month1' => 'Enero',
-    'month2' => 'Febrero',
-    'month3' => 'Marzo',
-    'month4' => 'Abril',
-    'month5' => 'Mayo',
-    'month6' => 'Junio',
-    'month7' => 'Julio',
-    'month8' => 'Agosto',
-    'month9' => 'Septiembre',
-    'month10' => 'Octubre',
-    'month11' => 'Noviembre',
-    'month12' => 'Diciembre',
 
     'month1' => 'Enero',
     'month2' => 'Febrero',

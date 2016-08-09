@@ -9,9 +9,9 @@
 @section('table')
     <tr>
         <th class="text-center" width="1"><input type="checkbox" name="chb-all" id="chb-all" /></th>
-        <th class="text-center" width="1">{!! sort_by('admin.permissions.index', 'id', trans('messages.id')) !!}</th>
-        <th>{!! sort_by('admin.permissions.index', 'name', trans('messages.name')) !!}</th>
-        <th class="text-center" width="100">{!! sort_by('admin.permissions.index', 'created_at', trans('messages.created_at')) !!}</th>      
+        <th class="text-center" width="1">{!! sort_by('admin.permissions.index', 'id', trans('custom/app.id')) !!}</th>
+        <th>{!! sort_by('admin.permissions.index', 'name', trans('custom/app.name')) !!}</th>
+        <th class="text-center" width="100">{!! sort_by('admin.permissions.index', 'created_at', trans('custom/app.created_at')) !!}</th>      
         <th class="text-center" width="100">#</th>
     </tr>
     @foreach ($results as $permission)

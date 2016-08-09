@@ -2,7 +2,7 @@
     <!--@include('layout.partials.breadcrumb')-->
     <section class="content-header">
         <h1>
-            @yield('title', trans('messages.'.$route['current']))
+            @yield('title', trans('custom/'.$route['current']))
         </h1>
         @yield('toolbars')
     </section>

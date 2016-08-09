@@ -20,12 +20,12 @@ class UserForm extends Form
     public function buildForm()
     {
         $this
-            ->add('name', 'text', ['label' => trans('messages.name')])
-            ->add('email', 'email', ['label' => trans('messages.email')])
+            ->add('name', 'text', ['label' => trans('custom/app.name')])
+            ->add('email', 'email', ['label' => trans('custom/app.email')])
             ->add('roles', 'select', [
                 'choices' => $this->getRoles(),
                 'selected' => $this->getRolesSelected(),
-                'label' => trans('messages.roles.index'),
+                'label' => trans('custom/app.roles.index'),
                 'attr' => [
                     'multiple' => true,
                     'id' => 'roles',
@@ -34,7 +34,7 @@ class UserForm extends Form
             ])
             ->add('password', 'password', [
                 'value' => '',
-                'label' => trans('messages.password')
+                'label' => trans('custom/app.password')
             ])
             ->add('task', 'hidden')
         ;

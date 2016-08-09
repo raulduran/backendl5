@@ -19,7 +19,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="pull-right">
-                                    <a class="btn btn-success" href="{{ URL::previous() }}"><i class="fa fa-fw fa-arrow-left"></i> {{ trans('messages.back') }}</a>
+                                    <a class="btn btn-success" href="{{ URL::previous() }}"><i class="fa fa-fw fa-arrow-left"></i> {{ trans('custom/app.back') }}</a>
                                     @yield('showbuttons')
                                 </div>
                             </div>

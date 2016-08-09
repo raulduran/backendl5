@@ -52,7 +52,7 @@ class UsersController extends Controller
         $route = ($request->get('task')=='apply') ? route('admin.users.edit', $user->id) : route('admin.users.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'),
+            'status' => trans('custom/app.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -60,7 +60,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return Response
      */
     public function show(User $user)
@@ -97,10 +97,10 @@ class UsersController extends Controller
     {
         $user->update($request->all());
 
-        $route = ($request->get('task')=='apply') ? route('admin.users.edit', $id) : route('admin.users.index');
+        $route = ($request->get('task')=='apply') ? route('admin.users.edit', $user->id) : route('admin.users.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'),
+            'status' => trans('custom/app.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -116,7 +116,7 @@ class UsersController extends Controller
         $user->delete();
 
         return redirect(route('admin.users.index'))->with([
-            'status' => trans('messages.deleted'),
+            'status' => trans('custom/app.deleted'),
             'type-status' => 'success'
         ]);
     }
@@ -132,7 +132,7 @@ class UsersController extends Controller
         User::destroy($request->get('ids'));
 
         return redirect(route('admin.users.index'))->with([
-            'status' => trans('messages.deleted'),
+            'status' => trans('custom/app.deleted'),
             'type-status' => 'success'
         ]);
     }

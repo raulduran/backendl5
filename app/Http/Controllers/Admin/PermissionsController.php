@@ -52,7 +52,7 @@ class PermissionsController extends Controller {
         $route = ($request->get('task')=='apply') ? route('admin.permissions.edit', $permission->id) : route('admin.permissions.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'),
+            'status' => trans('custom/app.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -100,7 +100,7 @@ class PermissionsController extends Controller {
         $route = ($request->get('task')=='apply') ? route('admin.permissions.edit', $permission->id) : route('admin.permissions.index');
 
         return redirect($route)->with([
-            'status' => trans('messages.saved'),
+            'status' => trans('custom/app.saved'),
             'type-status' => 'success'
         ]);
     }
@@ -116,7 +116,7 @@ class PermissionsController extends Controller {
         $permission->delete();
 
         return redirect(route('admin.permissions.index'))->with([
-            'status' => trans('messages.deleted'),
+            'status' => trans('custom/app.deleted'),
             'type-status' => 'success'
         ]);
     }
@@ -132,7 +132,7 @@ class PermissionsController extends Controller {
         Permission::destroy($request->get('ids'));
 
         return redirect(route('admin.permissions.index'))->with([
-            'status' => trans('messages.deleted'),
+            'status' => trans('custom/app.deleted'),
             'type-status' => 'success'
         ]);
     }

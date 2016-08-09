@@ -37,6 +37,6 @@ class PasswordController extends Controller
      */
     protected function getEmailSubject()
     {
-        return trans('messages.reset');
+        return trans('custom/app.reset');
     }
 }

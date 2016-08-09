@@ -1,1 +1,1 @@
-{{ trans('messages.clickresetpassword') }}: {{ url('password/reset/'.$token) }}
+{{ trans('custom/app.clickresetpassword') }}: {{ url('password/reset/'.$token) }}

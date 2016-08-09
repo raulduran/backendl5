@@ -5,5 +5,5 @@
 @stop
 
 @section('show')
-    @include('layout.partials.fields.text', ['label' => trans('messages.name'), 'field' => $role->name])
+    @include('layout.partials.fields.text', ['label' => trans('custom/app.name'), 'field' => $role->name])
 @stop
